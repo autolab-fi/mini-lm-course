@@ -24,6 +24,7 @@ Prepared in this course repository:
 - course metadata in `course-info.json`
 - module and lesson structure in `lessons-list.json`
 - overview lesson in `lessons/module-0/course_overview.md`
+- preview copy of the Tiny Shakespeare dataset in `datasets/tiny_shakespeare_chars/`
 - `Lab 01` as a checked step-by-step dataset preparation module
 - `Lab 02` as a separate tokenizer module placeholder
 - step-by-step English lessons for `Lab 03.1` through `Lab 03.8`
@@ -37,6 +38,7 @@ Prepared in this course repository:
 
 - **images** folder: Contains images for the course. Images can be organized in any structure within this folder. We suggest saving images in different folders for different modules.
 - **images/commons/credits.json** file: Contains source, author, license, and change notes for Wikimedia Commons media reused in lessons.
+- **datasets** folder: Contains preview copies of course datasets. During checking, student code reads the worker-provided read-only dataset path, not the GitHub preview URL.
 - **lessons** folder: Contains lessons in Markdown (.md) format. Lessons can be organized in any structure within this folder. We suggest saving lessons in different folders for different modules.
 - **course-info.json** file: Contains basic information about the course, such as the full course name, short name, description, workload, student requirements, and image links.
 - **lessons-list.json** file: Contains a list modules with lessons:

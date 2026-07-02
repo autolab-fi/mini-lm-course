@@ -20,6 +20,17 @@ The model needs text data. During automatic checking, the dataset is available i
 /datasets/tiny_shakespeare_chars/
 ```
 
+You do not edit these files in the browser editor. Your code only reads them.
+
+You can preview the same dataset in the open course repository:
+
+- [dataset_card.md](https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/datasets/tiny_shakespeare_chars/dataset_card.md)
+- [train.txt](https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/datasets/tiny_shakespeare_chars/train.txt)
+- [val.txt](https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/datasets/tiny_shakespeare_chars/val.txt)
+- [test.txt](https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/datasets/tiny_shakespeare_chars/test.txt)
+
+These links are for preview. In your Python code, always read the local checker files through `DATASETS_DIR`.
+
 For local development, the worker may provide a different dataset root through an environment variable:
 
 ```text
