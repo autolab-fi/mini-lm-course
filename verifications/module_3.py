@@ -325,18 +325,32 @@ def _metrics_check(context: dict[str, Any]) -> dict[str, Any]:
         return _failed("metrics", 20, f"metrics.json is not valid JSON: {error}")
     if not isinstance(data, dict):
         return _failed("metrics", 20, "metrics.json must contain a JSON object.")
-    for key in ("vocab_size", "train_chars", "val_chars", "val_loss", "perplexity"):
+    for key in ("dataset_id", "vocab_size", "train_chars", "val_chars", "val_loss", "perplexity"):
         if key not in data:
             return _failed("metrics", 20, f"metrics.json is missing {key}.")
+    expected_dataset_id = str(context.get("dataset_id", "tiny_shakespeare_chars"))
+    if data["dataset_id"] != expected_dataset_id:
+        return _failed("metrics", 20, f"dataset_id must be {expected_dataset_id}.")
     if not isinstance(data["vocab_size"], int) or data["vocab_size"] <= 0:
         return _failed("metrics", 20, "vocab_size must be a positive integer.")
     if not isinstance(data["train_chars"], int) or data["train_chars"] <= 0:
         return _failed("metrics", 20, "train_chars must be a positive integer.")
     if not isinstance(data["val_chars"], int) or data["val_chars"] <= 0:
         return _failed("metrics", 20, "val_chars must be a positive integer.")
+    dataset_dir = Path(str(context.get("datasets_dir", "/datasets"))) / expected_dataset_id
+    try:
+        train_text = (dataset_dir / "train.txt").read_text(encoding="utf-8")
+        val_text = (dataset_dir / "val.txt").read_text(encoding="utf-8")
+    except Exception as exc:
+        return _failed("metrics", 20, f"Could not read checker dataset files: {exc}")
+    expected_vocab_size = len(set(train_text))
+    if data["train_chars"] != len(train_text) or data["val_chars"] != len(val_text):
+        return _failed("metrics", 20, "train_chars and val_chars must match the selected dataset.")
+    if data["vocab_size"] != expected_vocab_size:
+        return _failed("metrics", 20, "vocab_size must match the selected training text.")
     if not _finite_number(data["val_loss"]) or not _finite_number(data["perplexity"]):
         return _failed("metrics", 20, "val_loss and perplexity must be finite numbers.")
-    return _passed("metrics", 20, "metrics.json contains finite validation metrics.")
+    return _passed("metrics", 20, "metrics.json matches the selected dataset and contains finite validation metrics.")
 
 def _samples_check(context: dict[str, Any]) -> dict[str, Any]:
     data, error = _load_json(_artifact_path(context, "samples.json"))

@@ -24,7 +24,7 @@ Prepared in this course repository:
 - course metadata in `course-info.json`
 - module and lesson structure in `lessons-list.json`
 - overview lesson in `lessons/module-0/course_overview.md`
-- preview copy of the Tiny Shakespeare dataset in `datasets/tiny_shakespeare_chars/`
+- preview copies of the Lab 03 datasets in `datasets/`
 - `Lab 01` as a checked step-by-step dataset preparation module
 - `Lab 02` as a separate tokenizer module placeholder
 - step-by-step English lessons for `Lab 03.1` through `Lab 03.8`
@@ -43,6 +43,16 @@ Prepared in this course repository:
 - **course-info.json** file: Contains basic information about the course, such as the full course name, short name, description, workload, student requirements, and image links.
 - **lessons-list.json** file: Contains a list modules with lessons:
 - **verifications** folder: Contains Python verification code loaded by the worker. Each `module_N.py` file matches the same `str_id` in `lessons-list.json`. The browser editor templates live in the course, while datasets and execution happen in the worker.
+
+### Lab 03 Dataset Variants
+
+Lab 03 can run the same character-level bigram code on multiple read-only datasets:
+
+- `tiny_shakespeare_chars`: English drama dialogue.
+- `kalevala_finnish_chars`: Finnish epic poetry from Project Gutenberg.
+- `suomalainen_lukemisto_chars`: Finnish prose and poetry anthology from Project Gutenberg.
+
+The platform or worker selects the dataset through the `DATASET_ID` environment variable. Student code should use `DATASETS_DIR` and `DATASET_ID`, not GitHub URLs.
 
 ### Structure of lessons-list.json
 **lessons-list.json** contains list with modules.

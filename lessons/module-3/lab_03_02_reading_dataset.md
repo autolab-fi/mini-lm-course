@@ -14,27 +14,31 @@ Read the training and validation text files that the checker provides.
 
 ## Introduction
 
-The model needs text data. During automatic checking, the dataset is available in a read-only directory:
+The model needs text data. During automatic checking, the selected dataset is available in a read-only directory:
 
 ```text
-/datasets/tiny_shakespeare_chars/
+/datasets/<dataset_id>/
 ```
 
 You do not edit these files in the browser editor. Your code only reads them.
 
-You can preview the same dataset in the open course repository:
+The default dataset is `tiny_shakespeare_chars`. The platform may also let you choose another dataset theme before running the same code.
 
-- [dataset_card.md](https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/datasets/tiny_shakespeare_chars/dataset_card.md)
-- [train.txt](https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/datasets/tiny_shakespeare_chars/train.txt)
-- [val.txt](https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/datasets/tiny_shakespeare_chars/val.txt)
-- [test.txt](https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/datasets/tiny_shakespeare_chars/test.txt)
+You can preview the available datasets in the open course repository:
+
+| Dataset ID | Theme | Preview |
+| --- | --- | --- |
+| `tiny_shakespeare_chars` | English drama dialogue | [card](https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/datasets/tiny_shakespeare_chars/dataset_card.md), [train](https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/datasets/tiny_shakespeare_chars/train.txt), [val](https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/datasets/tiny_shakespeare_chars/val.txt), [test](https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/datasets/tiny_shakespeare_chars/test.txt) |
+| `kalevala_finnish_chars` | Finnish epic poetry | [card](https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/datasets/kalevala_finnish_chars/dataset_card.md), [train](https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/datasets/kalevala_finnish_chars/train.txt), [val](https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/datasets/kalevala_finnish_chars/val.txt), [test](https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/datasets/kalevala_finnish_chars/test.txt) |
+| `suomalainen_lukemisto_chars` | Finnish prose and poetry anthology | [card](https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/datasets/suomalainen_lukemisto_chars/dataset_card.md), [train](https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/datasets/suomalainen_lukemisto_chars/train.txt), [val](https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/datasets/suomalainen_lukemisto_chars/val.txt), [test](https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/datasets/suomalainen_lukemisto_chars/test.txt) |
 
 These links are for preview. In your Python code, always read the local checker files through `DATASETS_DIR`.
 
-For local development, the worker may provide a different dataset root through an environment variable:
+The checker provides two environment variables:
 
 ```text
 DATASETS_DIR
+DATASET_ID
 ```
 
 The starter code supports both cases.
@@ -47,8 +51,11 @@ Python's `Path` object helps you build file paths without manually writing slash
 
 ```python
 from pathlib import Path
+import os
 
-folder = Path("/datasets") / "tiny_shakespeare_chars"
+datasets_dir = Path(os.environ.get("DATASETS_DIR", "/datasets"))
+dataset_id = os.environ.get("DATASET_ID", "tiny_shakespeare_chars")
+folder = datasets_dir / dataset_id
 train_path = folder / "train.txt"
 ```
 

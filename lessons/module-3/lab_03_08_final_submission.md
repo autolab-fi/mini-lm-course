@@ -62,6 +62,7 @@ samples.json
 
 ```json
 {
+  "dataset_id": "tiny_shakespeare_chars",
   "vocab_size": 42,
   "train_chars": 100000,
   "val_chars": 10000,
@@ -111,6 +112,18 @@ score >= 70
 - Do not download anything from the internet.
 - Do not write files outside the current working directory.
 - Your script must finish by itself.
+- Read the selected dataset through `DATASETS_DIR` and `DATASET_ID`.
+
+## Compare Dataset Themes
+
+After your script passes, run it on another dataset theme and compare:
+
+- `vocab_size`;
+- `val_loss`;
+- `perplexity`;
+- generated samples.
+
+The same code should work for English and Finnish text. Only the selected dataset changes.
 
 ## Conclusion
 
