@@ -28,7 +28,10 @@ Prepared in this course repository:
 - `Lab 02` as a separate tokenizer module placeholder
 - step-by-step English lessons for `Lab 03.1` through `Lab 03.8`
 - browser editor starter code in `lessons-list.json` under each lesson's `template` field
-- course-side verification functions in `verifications/module_1.py`
+- course-side verification functions split by module:
+  - `verifications/module_1.py` for Lab 01
+  - `verifications/module_2.py` for Lab 02
+  - `verifications/module_3.py` for Lab 03
 
 ## Description of Repository Structure
 
@@ -36,7 +39,7 @@ Prepared in this course repository:
 - **lessons** folder: Contains lessons in Markdown (.md) format. Lessons can be organized in any structure within this folder. We suggest saving lessons in different folders for different modules.
 - **course-info.json** file: Contains basic information about the course, such as the full course name, short name, description, workload, student requirements, and image links.
 - **lessons-list.json** file: Contains a list modules with lessons:
-- **verifications** folder: Contains Python verification code loaded by the worker. The browser editor templates live in the course, while datasets and execution happen in the worker.
+- **verifications** folder: Contains Python verification code loaded by the worker. Each `module_N.py` file matches the same `str_id` in `lessons-list.json`. The browser editor templates live in the course, while datasets and execution happen in the worker.
 
 ### Structure of lessons-list.json
 **lessons-list.json** contains list with modules.
