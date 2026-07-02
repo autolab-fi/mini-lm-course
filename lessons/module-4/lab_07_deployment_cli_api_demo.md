@@ -19,7 +19,7 @@ Prepare a minimal demo interface that generates text from a saved checkpoint.
 Required CLI:
 
 ```bash
-python3 generate.py --prompt "robot moves" --max-new-tokens 100
+python3 generate.py --prompt "summer rain" --max-new-tokens 100
 ```
 
 Optional HTTP API:

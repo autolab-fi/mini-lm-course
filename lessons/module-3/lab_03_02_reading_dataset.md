@@ -17,7 +17,7 @@ Read the training and validation text files that the checker provides.
 The model needs text data. During automatic checking, the dataset is available in a read-only directory:
 
 ```text
-/datasets/toy_chars_100kb/
+/datasets/tiny_shakespeare_chars/
 ```
 
 For local development, the worker may provide a different dataset root through an environment variable:
@@ -37,7 +37,7 @@ Python's `Path` object helps you build file paths without manually writing slash
 ```python
 from pathlib import Path
 
-folder = Path("/datasets") / "toy_chars_100kb"
+folder = Path("/datasets") / "tiny_shakespeare_chars"
 train_path = folder / "train.txt"
 ```
 

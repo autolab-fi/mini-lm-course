@@ -50,9 +50,9 @@ tokenizer_report.json
   "vocab_size": 42,
   "roundtrip_ok": true,
   "unknown_token": "<UNK>",
-  "example_text": "robot",
+  "example_text": "poem",
   "example_tokens": [10, 4, 3, 4, 12],
-  "decoded_text": "robot"
+  "decoded_text": "poem"
 }
 ```
 

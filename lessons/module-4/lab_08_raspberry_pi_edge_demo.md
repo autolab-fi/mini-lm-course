@@ -29,7 +29,7 @@ edge_demo.json
   "model_size_mb": 1.2,
   "latency_ms": 85.0,
   "memory_mb": 120.0,
-  "sample_output": "robot moves..."
+  "sample_output": "summer rain..."
 }
 ```
 

@@ -19,7 +19,7 @@ Implement a command-line generation script that loads the checkpoint from `Lab 0
 Expected command:
 
 ```bash
-python3 generate.py --prompt "the robot" --max-new-tokens 100 --temperature 0.8
+python3 generate.py --prompt "the poem" --max-new-tokens 100 --temperature 0.8
 ```
 
 ## Required Artifacts
