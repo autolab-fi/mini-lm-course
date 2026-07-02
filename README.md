@@ -1,5 +1,31 @@
-# course-template
-Course template for web-platform [ondroid.org](https://ondroid.org)
+# Mini Language Model Course
+
+Course repository for the web platform [ondroid.org](https://ondroid.org).
+
+This course teaches the full mini language model workflow:
+
+```text
+dataset -> tokenizer -> baseline LM -> neural LM -> evaluation -> generation -> deployment/demo -> feedback
+```
+
+## Current Stage
+
+The course repository has been updated from the generic template to the current Mini LM lesson plan.
+
+Implemented in the sibling worker repository:
+
+- `Lab 03: Bigram Character Language Model` local worker/grader prototype
+- sample job: `../mini-lm-worker/sample_jobs/lab_03_bigram.json`
+- sample submission: `../mini-lm-worker/sample_submissions/lab_03_bigram/train_bigram.py`
+- grader: `../mini-lm-worker/src/ai_grader/assignments/lab_03_bigram.py`
+
+Prepared in this course repository:
+
+- course metadata in `course-info.json`
+- module and lesson structure in `lessons-list.json`
+- overview lesson in `lessons/module-0/course_overview.md`
+- lab placeholders for `Lab 01` through `Lab 08`
+- detailed student-facing assignment draft for `Lab 03`
 
 ## Description of Repository Structure
 

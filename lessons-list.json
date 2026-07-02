@@ -1,16 +1,80 @@
 [
     {
-        "name":"Introduction to the Course",
-        "description": "Getting familiar with the platform.",
+        "name": "Course Overview",
+        "description": "Общая траектория курса и текущая стадия разработки Mini LM.",
         "sn": 0,
-        "str_id":"module_0",
-        "lessons":[
+        "str_id": "module_0",
+        "lessons": [
             {
-                "str_id": "lesson_0",
-                "name": "Lesson example",
-                "url": "https://raw.githubusercontent.com/autolab-fi/course-template/main/lessons/module-1/lesson_example.md",
+                "str_id": "course_overview",
+                "name": "Mini Language Model Course",
+                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-0/course_overview.md",
                 "sn": 0,
-                "description": "Example of the lesson."
+                "description": "Обзор курса: dataset, tokenizer, baseline LM, neural LM, evaluation, generation и deployment demo."
+            }
+        ]
+    },
+    {
+        "name": "Mini LM Labs",
+        "description": "Практические лабораторные по созданию маленькой language model.",
+        "sn": 1,
+        "str_id": "module_1",
+        "lessons": [
+            {
+                "str_id": "lab_01_dataset_preparation",
+                "name": "Lab 01: Dataset Preparation",
+                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-1/lab_01_dataset_preparation.md",
+                "sn": 0,
+                "description": "Подготовка train/val/test split и описания датасета."
+            },
+            {
+                "str_id": "lab_02_character_tokenizer",
+                "name": "Lab 02: Character Tokenizer",
+                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-1/lab_02_character_tokenizer.md",
+                "sn": 1,
+                "description": "Реализация encode/decode для символьного tokenizer."
+            },
+            {
+                "str_id": "lab_03_bigram_character_language_model",
+                "name": "Lab 03: Bigram Character Language Model",
+                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-1/lab_03_bigram_character_language_model.md",
+                "sn": 2,
+                "description": "Первый baseline language model: bigram counts, validation loss, perplexity и generated samples."
+            },
+            {
+                "str_id": "lab_04_neural_char_lm",
+                "name": "Lab 04: Neural Char LM",
+                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-1/lab_04_neural_char_lm.md",
+                "sn": 3,
+                "description": "Маленькая neural character LM: training loop, loss, optimizer, validation и checkpoint."
+            },
+            {
+                "str_id": "lab_05_generation_and_sampling",
+                "name": "Lab 05: Generation and Sampling",
+                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-1/lab_05_generation_and_sampling.md",
+                "sn": 4,
+                "description": "Prompt, max_new_tokens, temperature и stochastic sampling."
+            },
+            {
+                "str_id": "lab_06_evaluation",
+                "name": "Lab 06: Evaluation",
+                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-1/lab_06_evaluation.md",
+                "sn": 5,
+                "description": "Validation loss, perplexity, overfitting и сравнение baseline vs neural model."
+            },
+            {
+                "str_id": "lab_07_deployment_cli_api_demo",
+                "name": "Lab 07: Deployment CLI/API Demo",
+                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-1/lab_07_deployment_cli_api_demo.md",
+                "sn": 6,
+                "description": "Простой inference tool для генерации текста из checkpoint."
+            },
+            {
+                "str_id": "lab_08_raspberry_pi_edge_demo",
+                "name": "Lab 08: Raspberry Pi Edge Demo",
+                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-1/lab_08_raspberry_pi_edge_demo.md",
+                "sn": 7,
+                "description": "Edge inference: CPU, RAM, latency и model size на Raspberry Pi."
             }
         ]
     }

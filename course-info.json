@@ -1,11 +1,11 @@
 {
-    "fullCourseName":"full name of the course",
-    "shortCourseName":"CourseName", 
-    "shortDescription":"It is short description. It should be up to 160 characters.",
-    "fullDescription":"it is full description. It should be about 500 characters.",
-    "imageSmall":"https://github.com/autolab-fi/course-template/blob/main/images/course-info/image_640_360.jpg?raw=true",
-    "imageBig":"https://github.com/autolab-fi/course-template/blob/main/images/course-info/image_1920_1080.jpg?raw=true",
-    "workload":"0 hours",
-    "requirements":"Knowledge prerequisites for students before starting the course.",
+    "fullCourseName": "Mini Language Model Course",
+    "shortCourseName": "Mini LM",
+    "shortDescription": "Практический курс по созданию маленькой language model: dataset, tokenizer, baseline, neural LM, evaluation и generation.",
+    "fullDescription": "Курс ведет студента по полному циклу создания маленькой language model: подготовка текстового датасета, символьный токенизатор, bigram baseline, нейросетевая character LM, генерация, evaluation и простой deployment demo. Каждый lab добавляет один новый слой понимания и сохраняет проверяемые артефакты для автоматической оценки.",
+    "imageSmall": "https://github.com/autolab-fi/mini-lm-course/blob/main/images/course-info/image_640_360.jpg?raw=true",
+    "imageBig": "https://github.com/autolab-fi/mini-lm-course/blob/main/images/course-info/image_1920_1080.jpg?raw=true",
+    "workload": "16-24 hours",
+    "requirements": "Базовый Python: функции, списки, словари, чтение и запись файлов, JSON. Желательно понимать основы командной строки.",
     "programmingLanguage": "python"
 }
