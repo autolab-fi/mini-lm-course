@@ -86,12 +86,60 @@
         "str_id": "module_2",
         "lessons": [
             {
-                "str_id": "lab_02_character_tokenizer",
-                "name": "Lab 02: Character Tokenizer",
-                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-2/lab_02_character_tokenizer.md",
+                "str_id": "lab_02_01_why_tokenizers_exist",
+                "name": "Lab 02.1: Why Tokenizers Exist?",
+                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-2/lab_02_01_why_tokenizers_exist.md",
                 "sn": 0,
-                "description": "Implement encode/decode for a character tokenizer.",
-                "template": "import json\nfrom pathlib import Path\n\nclass Tokenizer:\n    def __init__(self, vocab):\n        self.vocab = vocab\n        self.char_to_id = {char: index for index, char in enumerate(vocab)}\n        self.id_to_char = {index: char for index, char in enumerate(vocab)}\n\n    def encode(self, text):\n        # TODO: return a list of integer token ids\n        return []\n\n    def decode(self, tokens):\n        # TODO: return the text represented by token ids\n        return \"\"\n\n    def save_tokenizer(self, path):\n        # TODO: save vocab and char_to_id as JSON\n        pass\n\n# Build and test your tokenizer here.\nprint(\"Tokenizer starter\")"
+                "description": "Use a tiny manual mapping to encode and decode text.",
+                "template": "text = \"ab ba\"\nchar_to_id = {\"a\": 0, \"b\": 1, \" \": 2}\nid_to_char = {0: \"a\", 1: \"b\", 2: \" \"}\n\nencoded = [char_to_id[char] for char in text]\ndecoded = \"\".join(id_to_char[token] for token in encoded)\n\nprint(\"Original text:\", text)\nprint(\"Encoded tokens:\", encoded)\nprint(\"Decoded text:\", decoded)\n"
+            },
+            {
+                "str_id": "lab_02_02_character_vocabulary",
+                "name": "Lab 02.2: Character Vocabulary",
+                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-2/lab_02_02_character_vocabulary.md",
+                "sn": 1,
+                "description": "Build stable vocab, char_to_id, and id_to_char mappings.",
+                "template": "text = \"robot moves\\nrobot turns\\n\"\n\n\ndef build_vocabulary(text):\n    # TODO: create vocab, char_to_id, id_to_char\n    vocab = []\n    char_to_id = {}\n    id_to_char = {}\n    return vocab, char_to_id, id_to_char\n\n\nvocab, char_to_id, id_to_char = build_vocabulary(text)\nprint(\"Vocabulary size:\", len(vocab))\nprint(\"Vocabulary:\", vocab)\nprint(\"char_to_id:\", char_to_id)\n"
+            },
+            {
+                "str_id": "lab_02_03_encoding_text",
+                "name": "Lab 02.3: Encoding Text",
+                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-2/lab_02_03_encoding_text.md",
+                "sn": 2,
+                "description": "Convert known text into integer token ids.",
+                "template": "text = \"robot\"\nvocab = sorted(set(text))\nchar_to_id = {char: index for index, char in enumerate(vocab)}\n\n\ndef encode(text, char_to_id):\n    # TODO: return a list of integer ids\n    return []\n\n\ntokens = encode(text, char_to_id)\nprint(\"Text:\", text)\nprint(\"Tokens:\", tokens)\nprint(\"Token count:\", len(tokens))\n"
+            },
+            {
+                "str_id": "lab_02_04_decoding_tokens",
+                "name": "Lab 02.4: Decoding Tokens",
+                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-2/lab_02_04_decoding_tokens.md",
+                "sn": 3,
+                "description": "Decode token ids back to text and verify round-trip behavior.",
+                "template": "text = \"robot\"\nvocab = sorted(set(text))\nchar_to_id = {char: index for index, char in enumerate(vocab)}\nid_to_char = {index: char for index, char in enumerate(vocab)}\n\n\ndef encode(text, char_to_id):\n    return [char_to_id[char] for char in text]\n\n\ndef decode(tokens, id_to_char):\n    # TODO: return decoded text\n    return \"\"\n\n\ntokens = encode(text, char_to_id)\ndecoded = decode(tokens, id_to_char)\nprint(\"Tokens:\", tokens)\nprint(\"Decoded text:\", decoded)\nprint(\"Roundtrip ok:\", decoded == text)\n"
+            },
+            {
+                "str_id": "lab_02_05_unknown_characters",
+                "name": "Lab 02.5: Unknown Characters",
+                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-2/lab_02_05_unknown_characters.md",
+                "sn": 4,
+                "description": "Add <UNK> and encode characters outside the vocabulary safely.",
+                "template": "training_text = \"robot\"\ntext = \"robot!\"\nUNK = \"<UNK>\"\n\n\ndef build_vocabulary(text):\n    vocab = [UNK] + sorted(set(text))\n    char_to_id = {char: index for index, char in enumerate(vocab)}\n    id_to_char = {index: char for index, char in enumerate(vocab)}\n    return vocab, char_to_id, id_to_char\n\n\ndef encode(text, char_to_id):\n    # TODO: use the <UNK> id for unknown characters\n    return []\n\n\nvocab, char_to_id, id_to_char = build_vocabulary(training_text)\ntokens = encode(text, char_to_id)\nprint(\"Unknown token id:\", char_to_id[UNK])\nprint(\"Text:\", text)\nprint(\"Tokens:\", tokens)\n"
+            },
+            {
+                "str_id": "lab_02_06_saving_loading_tokenizer",
+                "name": "Lab 02.6: Saving and Loading a Tokenizer",
+                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-2/lab_02_06_saving_loading_tokenizer.md",
+                "sn": 5,
+                "description": "Save tokenizer.json and load it back from disk.",
+                "template": "from pathlib import Path\nimport json\n\ntext = \"robot\"\nUNK = \"<UNK>\"\nvocab = [UNK] + sorted(set(text))\nchar_to_id = {char: index for index, char in enumerate(vocab)}\n\n\ndef save_tokenizer(path, vocab, char_to_id):\n    # TODO: write tokenizer JSON\n    pass\n\n\ndef load_tokenizer(path):\n    # TODO: read tokenizer JSON and return vocab, char_to_id\n    return [], {}\n\n\nsave_tokenizer(\"tokenizer.json\", vocab, char_to_id)\nloaded_vocab, loaded_char_to_id = load_tokenizer(\"tokenizer.json\")\nprint(\"Loaded vocab size:\", len(loaded_vocab))\nprint(\"Loaded has UNK:\", UNK in loaded_char_to_id)\n"
+            },
+            {
+                "str_id": "lab_02_07_final_tokenizer_submission",
+                "name": "Lab 02.7: Final Tokenizer Submission",
+                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-2/lab_02_07_final_tokenizer_submission.md",
+                "sn": 6,
+                "description": "Create tokenizer.json and tokenizer_report.json for the checker.",
+                "template": "from pathlib import Path\nimport json\n\nTRAINING_TEXT = \"robot moves forward\\nrobot turns left\\nmodel learns text\\n\"\nUNK = \"<UNK>\"\n\n\ndef build_vocabulary(text):\n    vocab = [UNK] + sorted(set(text))\n    char_to_id = {char: index for index, char in enumerate(vocab)}\n    id_to_char = {index: char for index, char in enumerate(vocab)}\n    return vocab, char_to_id, id_to_char\n\n\ndef encode(text, char_to_id):\n    unk_id = char_to_id[UNK]\n    return [char_to_id.get(char, unk_id) for char in text]\n\n\ndef decode(tokens, id_to_char):\n    return \"\".join(id_to_char[token] for token in tokens)\n\n\ndef main():\n    vocab, char_to_id, id_to_char = build_vocabulary(TRAINING_TEXT)\n    example_text = \"robot\"\n    example_tokens = encode(example_text, char_to_id)\n    decoded_text = decode(example_tokens, id_to_char)\n\n    Path(\"tokenizer.json\").write_text(\n        json.dumps({\"vocab\": vocab, \"char_to_id\": char_to_id}, ensure_ascii=False, indent=2),\n        encoding=\"utf-8\",\n    )\n    Path(\"tokenizer_report.json\").write_text(\n        json.dumps({\n            \"vocab_size\": len(vocab),\n            \"roundtrip_ok\": decoded_text == example_text,\n            \"unknown_token\": UNK,\n            \"example_text\": example_text,\n            \"example_tokens\": example_tokens,\n            \"decoded_text\": decoded_text,\n        }, indent=2),\n        encoding=\"utf-8\",\n    )\n    print(\"Tokenizer artifacts written\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
             }
         ]
     },

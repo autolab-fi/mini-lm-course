@@ -59,6 +59,48 @@ TASKS = {
         "required_artifacts": ["train.txt", "val.txt", "test.txt", "stats.json", "dataset_card.md"],
         "limits": DEFAULT_LIMITS,
     },
+    "lab_02_01_why_tokenizers_exist": {
+        "filename": "main.py",
+        "command": "python main.py",
+        "required_artifacts": [],
+        "limits": DEFAULT_LIMITS,
+    },
+    "lab_02_02_character_vocabulary": {
+        "filename": "main.py",
+        "command": "python main.py",
+        "required_artifacts": [],
+        "limits": DEFAULT_LIMITS,
+    },
+    "lab_02_03_encoding_text": {
+        "filename": "main.py",
+        "command": "python main.py",
+        "required_artifacts": [],
+        "limits": DEFAULT_LIMITS,
+    },
+    "lab_02_04_decoding_tokens": {
+        "filename": "main.py",
+        "command": "python main.py",
+        "required_artifacts": [],
+        "limits": DEFAULT_LIMITS,
+    },
+    "lab_02_05_unknown_characters": {
+        "filename": "main.py",
+        "command": "python main.py",
+        "required_artifacts": [],
+        "limits": DEFAULT_LIMITS,
+    },
+    "lab_02_06_saving_loading_tokenizer": {
+        "filename": "main.py",
+        "command": "python main.py",
+        "required_artifacts": ["tokenizer.json"],
+        "limits": DEFAULT_LIMITS,
+    },
+    "lab_02_07_final_tokenizer_submission": {
+        "filename": "tokenizer.py",
+        "command": "python tokenizer.py",
+        "required_artifacts": ["tokenizer.json", "tokenizer_report.json"],
+        "limits": DEFAULT_LIMITS,
+    },
     "lab_03_01_intro_to_character_lm": {
         "filename": "main.py",
         "command": "python main.py",
@@ -206,6 +248,18 @@ def _extract_list_after_label(stdout: str, label: str) -> list[Any] | None:
     return None
 
 
+def _extract_dict_after_label(stdout: str, label: str) -> dict[str, Any] | None:
+    for line in stdout.splitlines():
+        if line.startswith(label):
+            _, value = line.split(":", 1)
+            try:
+                parsed = ast.literal_eval(value.strip())
+            except Exception:
+                return None
+            return parsed if isinstance(parsed, dict) else None
+    return None
+
+
 def _extract_float_after_label(stdout: str, label: str) -> float | None:
     match = re.search(re.escape(label) + r"\s*([-+]?\d+(?:\.\d+)?(?:[eE][-+]?\d+)?)", stdout)
     if not match:
@@ -346,6 +400,115 @@ def lab_01_07_final_dataset_submission(context: dict[str, Any]) -> dict[str, Any
         _dataset_text_splits_check(context, max_points=30),
         _dataset_stats_check(context, max_points=25),
         _dataset_card_check(context, max_points=15),
+    ]
+    return _result(checks)
+
+
+def lab_02_01_why_tokenizers_exist(context: dict[str, Any]) -> dict[str, Any]:
+    stdout = _stdout(context)
+    tokens = _extract_list_after_label(stdout, "Encoded tokens")
+    checks = [
+        _runtime_check(context),
+        _passed("encoded_tokens", 40, "Printed encoded integer tokens.")
+        if tokens is not None and tokens and all(isinstance(token, int) for token in tokens)
+        else _failed("encoded_tokens", 40, "Print Encoded tokens as a non-empty list of integers."),
+        _passed("decoded_text", 40, "Printed decoded text.")
+        if "Decoded text:" in stdout and len(stdout.split("Decoded text:", 1)[1].strip()) > 0
+        else _failed("decoded_text", 40, "Print Decoded text: followed by decoded text."),
+    ]
+    return _result(checks)
+
+
+def lab_02_02_character_vocabulary(context: dict[str, Any]) -> dict[str, Any]:
+    stdout = _stdout(context)
+    vocab_size = _extract_float_after_label(stdout, "Vocabulary size:")
+    vocab = _extract_list_after_label(stdout, "Vocabulary:")
+    char_to_id = _extract_dict_after_label(stdout, "char_to_id")
+    checks = [
+        _runtime_check(context),
+        _passed("vocab_size", 25, "Vocabulary size is positive.")
+        if vocab_size is not None and vocab_size > 0
+        else _failed("vocab_size", 25, "Print a positive Vocabulary size."),
+        _passed("vocabulary", 25, "Printed a non-empty vocabulary list.")
+        if vocab is not None and vocab and all(isinstance(char, str) for char in vocab)
+        else _failed("vocabulary", 25, "Print Vocabulary as a non-empty list of strings."),
+        _passed("char_to_id", 30, "Printed a valid char_to_id dictionary.")
+        if _valid_char_to_id(vocab, char_to_id)
+        else _failed("char_to_id", 30, "Print char_to_id with contiguous ids matching Vocabulary."),
+    ]
+    return _result(checks)
+
+
+def lab_02_03_encoding_text(context: dict[str, Any]) -> dict[str, Any]:
+    stdout = _stdout(context)
+    tokens = _extract_list_after_label(stdout, "Tokens")
+    token_count = _extract_float_after_label(stdout, "Token count:")
+    checks = [
+        _runtime_check(context),
+        _passed("tokens", 50, "Encoded text as integer tokens.")
+        if tokens is not None and tokens and all(isinstance(token, int) for token in tokens)
+        else _failed("tokens", 50, "Print Tokens as a non-empty list of integers."),
+        _passed("token_count", 30, "Token count matches token list length.")
+        if tokens is not None and token_count is not None and int(token_count) == len(tokens)
+        else _failed("token_count", 30, "Print Token count equal to len(Tokens)."),
+    ]
+    return _result(checks)
+
+
+def lab_02_04_decoding_tokens(context: dict[str, Any]) -> dict[str, Any]:
+    stdout = _stdout(context)
+    checks = [
+        _runtime_check(context),
+        _passed("decoded_text", 40, "Printed decoded text.")
+        if "Decoded text:" in stdout and len(stdout.split("Decoded text:", 1)[1].splitlines()[0].strip()) > 0
+        else _failed("decoded_text", 40, "Print Decoded text: followed by decoded text."),
+        _passed("roundtrip", 40, "Roundtrip check is true.")
+        if "Roundtrip ok: True" in stdout
+        else _failed("roundtrip", 40, "Print Roundtrip ok: True."),
+    ]
+    return _result(checks)
+
+
+def lab_02_05_unknown_characters(context: dict[str, Any]) -> dict[str, Any]:
+    stdout = _stdout(context)
+    unk_id = _extract_float_after_label(stdout, "Unknown token id:")
+    tokens = _extract_list_after_label(stdout, "Tokens")
+    checks = [
+        _runtime_check(context),
+        _passed("unknown_token_id", 30, "Printed unknown token id.")
+        if unk_id is not None and unk_id >= 0
+        else _failed("unknown_token_id", 30, "Print Unknown token id: <non-negative integer>."),
+        _passed("unknown_encoded", 50, "Encoded unknown character using the unknown token id.")
+        if tokens is not None and unk_id is not None and int(unk_id) in tokens
+        else _failed("unknown_encoded", 50, "Tokens should include the unknown token id for an unseen character."),
+    ]
+    return _result(checks)
+
+
+def lab_02_06_saving_loading_tokenizer(context: dict[str, Any]) -> dict[str, Any]:
+    stdout = _stdout(context)
+    missing = context.get("missing_artifacts", [])
+    oversized = context.get("oversized_artifacts", [])
+    loaded_size = _extract_float_after_label(stdout, "Loaded vocab size:")
+    checks = [
+        _runtime_check(context, max_points=20),
+        _tokenizer_required_artifacts_check(missing, oversized, ["tokenizer.json"], max_points=20),
+        _tokenizer_json_check(context, max_points=40),
+        _passed("loaded_vocab", 20, "Loaded tokenizer has a positive vocabulary size.")
+        if loaded_size is not None and loaded_size > 0 and "Loaded has UNK: True" in stdout
+        else _failed("loaded_vocab", 20, "Print Loaded vocab size > 0 and Loaded has UNK: True."),
+    ]
+    return _result(checks)
+
+
+def lab_02_07_final_tokenizer_submission(context: dict[str, Any]) -> dict[str, Any]:
+    missing = context.get("missing_artifacts", [])
+    oversized = context.get("oversized_artifacts", [])
+    checks = [
+        _runtime_check(context, max_points=10),
+        _tokenizer_required_artifacts_check(missing, oversized, ["tokenizer.json", "tokenizer_report.json"], max_points=20),
+        _tokenizer_json_check(context, max_points=30),
+        _tokenizer_report_check(context, max_points=40),
     ]
     return _result(checks)
 
@@ -597,6 +760,63 @@ def _dataset_card_check(context: dict[str, Any], max_points: int) -> dict[str, A
     if len(text) < 20:
         return _failed("dataset_card", max_points, "dataset_card.md should contain a short dataset description.")
     return _passed("dataset_card", max_points, "dataset_card.md contains a dataset description.")
+
+
+def _tokenizer_required_artifacts_check(
+    missing: list[str],
+    oversized: list[str],
+    required: list[str],
+    max_points: int,
+) -> dict[str, Any]:
+    relevant_missing = [name for name in missing if name in required]
+    relevant_oversized = [name for name in oversized if name in required]
+    if relevant_missing:
+        return _failed("required_files", max_points, f"Missing required artifact(s): {', '.join(relevant_missing)}")
+    if relevant_oversized:
+        return _failed("required_files", max_points, f"Oversized artifact(s): {', '.join(relevant_oversized)}")
+    return _passed("required_files", max_points, "All tokenizer artifacts were found.")
+
+
+def _tokenizer_json_check(context: dict[str, Any], max_points: int) -> dict[str, Any]:
+    data, error = _load_json(_artifact_path(context, "tokenizer.json"))
+    if error:
+        return _failed("tokenizer_json", max_points, f"tokenizer.json is not valid JSON: {error}")
+    if not isinstance(data, dict):
+        return _failed("tokenizer_json", max_points, "tokenizer.json must contain a JSON object.")
+    vocab = data.get("vocab")
+    char_to_id = data.get("char_to_id")
+    if not _valid_char_to_id(vocab, char_to_id):
+        return _failed("tokenizer_json", max_points, "tokenizer.json must contain vocab and matching contiguous char_to_id.")
+    if "<UNK>" not in char_to_id:
+        return _failed("tokenizer_json", max_points, "tokenizer.json must include the <UNK> token.")
+    return _passed("tokenizer_json", max_points, "tokenizer.json contains a valid character tokenizer.")
+
+
+def _tokenizer_report_check(context: dict[str, Any], max_points: int) -> dict[str, Any]:
+    data, error = _load_json(_artifact_path(context, "tokenizer_report.json"))
+    if error:
+        return _failed("tokenizer_report", max_points, f"tokenizer_report.json is not valid JSON: {error}")
+    if not isinstance(data, dict):
+        return _failed("tokenizer_report", max_points, "tokenizer_report.json must contain a JSON object.")
+    if not isinstance(data.get("vocab_size"), int) or data["vocab_size"] <= 0:
+        return _failed("tokenizer_report", max_points, "vocab_size must be a positive integer.")
+    if data.get("roundtrip_ok") is not True:
+        return _failed("tokenizer_report", max_points, "roundtrip_ok must be true.")
+    if data.get("unknown_token") != "<UNK>":
+        return _failed("tokenizer_report", max_points, "unknown_token must be <UNK>.")
+    if not isinstance(data.get("example_tokens"), list) or not all(isinstance(token, int) for token in data["example_tokens"]):
+        return _failed("tokenizer_report", max_points, "example_tokens must be a list of integers.")
+    if not isinstance(data.get("decoded_text"), str) or not data["decoded_text"]:
+        return _failed("tokenizer_report", max_points, "decoded_text must be a non-empty string.")
+    return _passed("tokenizer_report", max_points, "tokenizer_report.json contains valid tokenizer checks.")
+
+
+def _valid_char_to_id(vocab: Any, char_to_id: Any) -> bool:
+    if not isinstance(vocab, list) or not vocab or not all(isinstance(char, str) for char in vocab):
+        return False
+    if not isinstance(char_to_id, dict) or set(char_to_id.keys()) != set(vocab):
+        return False
+    return set(char_to_id.values()) == set(range(len(vocab)))
 
 
 def _finite_number(value: Any) -> bool:
