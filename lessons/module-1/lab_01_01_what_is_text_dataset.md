@@ -16,6 +16,12 @@ Understand what a text dataset is and why a language model needs one.
 
 A language model learns from examples of text. Before we build a tokenizer or a model, we need a clean text corpus.
 
+![A printed page from Shakespeare's First Folio](https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/images/commons/shakespeare-first-folio-measure-for-measure.jpg)
+
+*Image source: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:First-page-first-folio-measure-for-measure.jpg), William Shakespeare, Isaac Jaggard and Edward Blount, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0).*
+
+A real dataset often starts as human text: books, articles, documentation, messages, or transcripts. For this course, we work with plain text files, because a small language model does not read a page image directly. It reads characters.
+
 In this course, a dataset is just text split into files:
 
 ```text

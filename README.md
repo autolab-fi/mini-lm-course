@@ -36,6 +36,7 @@ Prepared in this course repository:
 ## Description of Repository Structure
 
 - **images** folder: Contains images for the course. Images can be organized in any structure within this folder. We suggest saving images in different folders for different modules.
+- **images/commons/credits.json** file: Contains source, author, license, and change notes for Wikimedia Commons media reused in lessons.
 - **lessons** folder: Contains lessons in Markdown (.md) format. Lessons can be organized in any structure within this folder. We suggest saving lessons in different folders for different modules.
 - **course-info.json** file: Contains basic information about the course, such as the full course name, short name, description, workload, student requirements, and image links.
 - **lessons-list.json** file: Contains a list modules with lessons:

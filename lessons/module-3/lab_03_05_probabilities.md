@@ -24,6 +24,12 @@ For one current character, the model has one row of counts:
 
 To sample or score the next character, we convert this row into probabilities.
 
+![A small directed probability graph](https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/images/commons/markov-chain-weather-graph.png)
+
+*Image source: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Markov_Chain_weather_model_matrix_as_a_graph.png), Pmdusso, [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0).*
+
+Each outgoing arrow from a state has a probability. For a character language model, one row of the probability matrix contains all outgoing probabilities for one current character.
+
 ## Theory
 
 ### Normalization

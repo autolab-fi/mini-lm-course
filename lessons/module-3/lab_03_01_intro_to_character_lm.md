@@ -33,6 +33,12 @@ A bigram character model uses only one previous character. If the current charac
 What character usually comes after h?
 ```
 
+![A simple Markov chain with states and transition arrows](https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/images/commons/markov-chain-weather-graph.png)
+
+*Image source: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Markov_Chain_weather_model_matrix_as_a_graph.png), Pmdusso, [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0).*
+
+A bigram model is a very small Markov-style model: the next step depends only on the current state. In our case, each state is a character, and each arrow is a possible next character.
+
 ## Theory
 
 ### Characters as a Sequence

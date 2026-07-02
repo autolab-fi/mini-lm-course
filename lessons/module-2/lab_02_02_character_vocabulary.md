@@ -18,6 +18,12 @@ A character tokenizer needs a list of known characters. This list is called the 
 
 The order must be stable, because every character receives an id based on its position.
 
+![ASCII code chart showing characters and numeric codes](https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/images/commons/ascii-code-chart.svg)
+
+*Image source: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:ASCII_Code_Chart.svg), Anomie, public domain.*
+
+The chart shows a historical example of the same idea: characters can be represented by numbers. In this lab, you will create a smaller course-specific mapping from the characters in your training text to ids.
+
 ## Theory
 
 Use:

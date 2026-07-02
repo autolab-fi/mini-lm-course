@@ -28,6 +28,12 @@ If `counts[3][7] == 12`, that means:
 character with id 7 appeared after character with id 3 twelve times
 ```
 
+![A Markov chain transition matrix shown as connected states](https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/images/commons/markov-chain-matrix.svg)
+
+*Image source: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Markov_chain_SVG.svg), IkamusumeFan, [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0).*
+
+The diagram connects two equivalent views: a table of transition values and arrows between states. Your `counts` matrix is the table form. Later, probabilities turn those counts into transition weights.
+
 ## Theory
 
 ### Empty Matrix
