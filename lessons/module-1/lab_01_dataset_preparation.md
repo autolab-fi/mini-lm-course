@@ -1,24 +1,36 @@
+---
+index: 0
+module: module_1
+task: lab_01_dataset_preparation
+previous: course_overview
+next: lab_02_character_tokenizer
+---
+
 # Lab 01: Dataset Preparation
 
 ## Objective
 
-Понять, что language model обучается на корпусе текста, и подготовить train/validation/test split.
+Understand that a language model learns from a text corpus, then prepare train, validation, and test splits.
+
+## Introduction
+
+A language model cannot learn without data. In this lab, you prepare the text files that later labs will use.
+
+The goal is not to collect a huge dataset. The goal is to make a clean, simple dataset with a clear structure.
 
 ## Task
 
-Подготовьте текстовый dataset для следующих лабораторных. Вам нужно прочитать raw text, нормализовать encoding и переносы строк, разделить данные на train/validation/test и сохранить краткое описание датасета.
+Write Python code that:
 
-## What to Implement
-
-Создайте скрипт или notebook, который:
-
-1. Читает исходный текстовый файл.
-2. Нормализует текст в UTF-8.
-3. Делит текст на `train.txt`, `val.txt`, `test.txt`.
-4. Считает базовую статистику.
-5. Сохраняет `dataset_card.md`.
+1. Reads a raw text file.
+2. Normalizes the text as UTF-8.
+3. Splits the text into `train.txt`, `val.txt`, and `test.txt`.
+4. Counts basic statistics.
+5. Writes a short dataset description.
 
 ## Required Artifacts
+
+Your program must create:
 
 ```text
 train.txt
@@ -40,15 +52,15 @@ dataset_card.md
 
 ## Checks
 
-Grader будет проверять:
+The checker will verify that:
 
 - required files exist;
-- files are valid UTF-8;
-- split files are non-empty;
-- train split is larger than validation and test splits;
-- `stats.json` contains `num_chars`, `num_lines`, `vocab_chars`;
+- text files are valid UTF-8;
+- split files are not empty;
+- the train split is larger than validation and test splits;
+- `stats.json` contains `num_chars`, `num_lines`, and `vocab_chars`;
 - split files do not fully overlap.
 
 ## Submission Notes
 
-Сохраняйте output files в текущую рабочую директорию submission. Не скачивайте внешние данные во время проверки.
+Save output files in the current working directory. Do not download external data during the check.

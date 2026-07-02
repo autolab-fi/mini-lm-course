@@ -1,17 +1,25 @@
+---
+index: 13
+module: module_1
+task: lab_07_deployment_cli_api_demo
+previous: lab_06_evaluation
+next: lab_08_raspberry_pi_edge_demo
+---
+
 # Lab 07: Deployment CLI/API Demo
 
 ## Objective
 
-Показать, как обученная модель превращается в простой inference tool.
+Turn a trained model into a simple inference tool.
 
 ## Task
 
-Подготовьте минимальный demo-интерфейс для генерации текста из сохраненного checkpoint.
+Prepare a minimal demo interface that generates text from a saved checkpoint.
 
 Required CLI:
 
 ```bash
-python generate.py --prompt "robot moves" --max-new-tokens 100
+python3 generate.py --prompt "robot moves" --max-new-tokens 100
 ```
 
 Optional HTTP API:
@@ -29,13 +37,13 @@ demo_result.json
 
 ## Checks
 
-Grader будет проверять:
+The checker will verify that:
 
-- model loads from checkpoint;
-- generation completes within timeout;
+- the model loads from a checkpoint;
+- generation completes within the timeout;
 - latency is reported;
 - output is valid UTF-8.
 
 ## Submission Notes
 
-Не обучайте модель внутри demo. Inference tool должен только загрузить checkpoint и выполнить generation.
+Do not train the model inside the demo. The inference tool should only load a checkpoint and generate text.

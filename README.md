@@ -25,7 +25,9 @@ Prepared in this course repository:
 - module and lesson structure in `lessons-list.json`
 - overview lesson in `lessons/module-0/course_overview.md`
 - lab placeholders for `Lab 01` through `Lab 08`
-- detailed student-facing assignment draft for `Lab 03`
+- step-by-step English lessons for `Lab 03.1` through `Lab 03.8`
+- browser editor starter code in `lessons-list.json` under each lesson's `template` field
+- course-side verification functions in `verifications/module_1.py`
 
 ## Description of Repository Structure
 
@@ -33,6 +35,7 @@ Prepared in this course repository:
 - **lessons** folder: Contains lessons in Markdown (.md) format. Lessons can be organized in any structure within this folder. We suggest saving lessons in different folders for different modules.
 - **course-info.json** file: Contains basic information about the course, such as the full course name, short name, description, workload, student requirements, and image links.
 - **lessons-list.json** file: Contains a list modules with lessons:
+- **verifications** folder: Contains Python verification code loaded by the worker. The browser editor templates live in the course, while datasets and execution happen in the worker.
 
 ### Structure of lessons-list.json
 **lessons-list.json** contains list with modules.
@@ -50,6 +53,7 @@ Every lessons has structure:
 - *url*: URL for the lesson's Markdown file.
 - *sn*: Serial number of the lesson in the course, starting from 0.
 - *description*: description of the lesson.
+- *template*: starter Python code shown in the browser editor.
 
 ### Structure of course-info.json
 Course info:

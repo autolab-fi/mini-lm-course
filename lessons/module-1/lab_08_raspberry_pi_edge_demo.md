@@ -1,12 +1,19 @@
+---
+index: 14
+module: module_1
+task: lab_08_raspberry_pi_edge_demo
+previous: lab_07_deployment_cli_api_demo
+---
+
 # Lab 08: Raspberry Pi Edge Demo
 
 ## Objective
 
-Понять ограничения edge device: CPU, RAM, latency, model size.
+Understand edge-device limits: CPU, RAM, latency, and model size.
 
 ## Task
 
-Запустите inference demo на Raspberry Pi или совместимом edge environment и измерьте latency, memory usage и размер модели.
+Run the inference demo on a Raspberry Pi or compatible edge environment. Measure latency, memory usage, and model size.
 
 ## Required Artifacts
 
@@ -28,13 +35,13 @@ edge_demo.json
 
 ## Checks
 
-Grader будет проверять:
+The checker will verify that:
 
-- model loads on Raspberry Pi or target edge environment;
+- the model loads on Raspberry Pi or the target edge environment;
 - generation works;
 - latency and memory usage are reported;
-- edge latency is compared with local/server latency.
+- edge latency is compared with local or server latency.
 
 ## Submission Notes
 
-Цель этой лабораторной - увидеть реальные ограничения маленьких устройств и сформулировать, какие изменения помогли бы ускорить inference.
+The goal is to see real limitations of small devices and explain which changes could make inference faster.

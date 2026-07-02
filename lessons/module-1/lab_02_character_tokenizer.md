@@ -1,14 +1,34 @@
+---
+index: 1
+module: module_1
+task: lab_02_character_tokenizer
+previous: lab_01_dataset_preparation
+next: lab_03_01_intro_to_character_lm
+---
+
 # Lab 02: Character Tokenizer
 
 ## Objective
 
-Понять, как текст превращается в последовательность token ids и обратно.
+Understand how text becomes a sequence of integer token ids and how those ids can be decoded back to text.
 
-## Task
+## Introduction
 
-Реализуйте символьный tokenizer. Он должен строить vocabulary по training text, кодировать строки в integer token ids и восстанавливать исходный текст через decode.
+Models work with numbers. A tokenizer converts text into numbers.
+
+In this course, we start with a character tokenizer. Every unique character gets one integer id.
+
+Example:
+
+```text
+"a" -> 0
+"b" -> 1
+" " -> 2
+```
 
 ## Required API
+
+Implement:
 
 ```python
 encode(text: str) -> list[int]
@@ -18,6 +38,8 @@ load_tokenizer(path: str) -> Tokenizer
 ```
 
 ## Required Artifacts
+
+Your program must create:
 
 ```text
 tokenizer.json
@@ -40,14 +62,14 @@ tokenizer_report.json
 
 ## Checks
 
-Grader будет проверять:
+The checker will verify that:
 
 - `encode` returns a list of integers;
 - `decode(encode(text)) == text` for known text;
-- newline, punctuation and empty string work;
+- newline, punctuation, and empty string cases work;
 - unknown characters are handled or documented;
 - `tokenizer.json` is valid JSON.
 
 ## Submission Notes
 
-Следующая лабораторная будет использовать идею next-character prediction, поэтому убедитесь, что порядок символов в vocabulary стабилен и сохраняется в `tokenizer.json`.
+Keep the vocabulary order stable. The next lab will use a similar mapping to build a bigram count matrix.

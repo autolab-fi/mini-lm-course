@@ -1,36 +1,62 @@
+---
+index: 0
+module: module_0
+task: course_overview
+next: lab_01_dataset_preparation
+---
+
 # Mini Language Model Course
 
-## Цель курса
+## Objective
 
-В этом курсе вы шаг за шагом построите маленькую language model: от текстового датасета до генерации текста и простого demo.
+Understand the full learning path of the course and how the automatic checker will work.
 
-Учебная траектория:
+## Course Path
+
+In this course, you will build a small language model step by step:
 
 ```text
 dataset -> tokenizer -> baseline LM -> neural LM -> evaluation -> generation -> deployment/demo -> feedback
 ```
 
-Главная идея курса: каждый lab добавляет один новый слой понимания. Сначала вы готовите данные, затем превращаете символы в token ids, строите простой baseline без neural networks, а после этого переходите к обучаемой модели.
+Each lab adds one new idea. You will not start with a large machine learning library. First, you will build the basic pieces in plain Python so that the model behavior is visible.
 
-## Что вы будете делать
+## What You Will Build
 
-1. Подготовите train/validation/test split для текстового корпуса.
-2. Реализуете символьный tokenizer.
-3. Построите bigram character language model.
-4. Обучите маленькую neural character LM.
-5. Реализуете generation CLI с temperature sampling.
-6. Сравните baseline и neural model через validation loss и perplexity.
-7. Подготовите простой inference demo.
-8. Запустите edge demo и измерите ограничения по latency, memory и model size.
+1. A prepared text dataset with train, validation, and test splits.
+2. A character tokenizer that converts text to token ids and back.
+3. A bigram character language model without neural networks.
+4. A small neural character language model.
+5. A generation script with prompt and temperature controls.
+6. An evaluation report comparing the baseline and neural model.
+7. A simple inference demo.
+8. An edge demo with latency and memory measurements.
 
-## Как устроены проверки
+## How Checks Work
 
-Каждая лабораторная сохраняет artifacts: JSON, markdown reports, model checkpoints или generated samples. Автоматический grader проверяет не только запуск кода, но и формат результатов.
+Most assignments ask you to write Python code in the browser editor. When you click the check button, the platform runs your code automatically.
 
-Для первых labs основной язык - Python. Форматы файлов и требования к artifacts указаны внутри каждого задания.
+Your code should create required output files called artifacts. The checker reads those artifacts and returns:
 
-## Текущая стадия курса
+- score;
+- passed and failed checks;
+- feedback;
+- stdout and stderr logs.
 
-На данный момент подготовлен план курса и реализован первый рабочий вертикальный срез worker/grader для `Lab 03: Bigram Character Language Model`.
+For example, `Lab 03` asks your program to create:
 
-Это значит, что `Lab 03` уже можно проверять локально через sample job: student submission запускается, artifacts собираются, grader выставляет score и сохраняет `result.json`.
+```text
+bigram_counts.json
+metrics.json
+samples.json
+```
+
+## Current Development Status
+
+The first working worker/grader prototype is implemented for:
+
+```text
+Lab 03: Bigram Character Language Model
+```
+
+That prototype can run a student submission locally, collect artifacts, grade them, and produce a structured `result.json`.

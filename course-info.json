@@ -1,11 +1,11 @@
 {
     "fullCourseName": "Mini Language Model Course",
     "shortCourseName": "Mini LM",
-    "shortDescription": "Практический курс по созданию маленькой language model: dataset, tokenizer, baseline, neural LM, evaluation и generation.",
-    "fullDescription": "Курс ведет студента по полному циклу создания маленькой language model: подготовка текстового датасета, символьный токенизатор, bigram baseline, нейросетевая character LM, генерация, evaluation и простой deployment demo. Каждый lab добавляет один новый слой понимания и сохраняет проверяемые артефакты для автоматической оценки.",
+    "shortDescription": "A practical course for building a small language model: dataset, tokenizer, baseline, neural LM, evaluation, and generation.",
+    "fullDescription": "This course guides students through the full workflow of building a small language model: preparing a text dataset, creating a character tokenizer, training a bigram baseline, training a neural character LM, generating text, evaluating models, and building a simple deployment demo. Each lab adds one new idea and saves artifacts that can be checked automatically.",
     "imageSmall": "https://github.com/autolab-fi/mini-lm-course/blob/main/images/course-info/image_640_360.jpg?raw=true",
     "imageBig": "https://github.com/autolab-fi/mini-lm-course/blob/main/images/course-info/image_1920_1080.jpg?raw=true",
     "workload": "16-24 hours",
-    "requirements": "Базовый Python: функции, списки, словари, чтение и запись файлов, JSON. Желательно понимать основы командной строки.",
+    "requirements": "Basic Python: functions, lists, dictionaries, reading and writing files, and JSON. Basic command-line familiarity is helpful but not required.",
     "programmingLanguage": "python"
 }

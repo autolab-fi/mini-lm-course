@@ -1,18 +1,26 @@
+---
+index: 10
+module: module_1
+task: lab_04_neural_char_lm
+previous: lab_03_08_final_submission
+next: lab_05_generation_and_sampling
+---
+
 # Lab 04: Neural Char LM
 
 ## Objective
 
-Понять training loop, loss, optimizer, validation и checkpoint.
+Understand the training loop, loss, optimizer, validation, and checkpoint saving for a small neural character language model.
 
 ## Task
 
-Обучите маленькую neural character language model:
+Train a small model with this structure:
 
 ```text
 character id -> embedding -> GRU/RNN -> linear -> next character logits
 ```
 
-Модель должна обучаться на prepared character dataset и сохранять checkpoint для следующих лабораторных.
+The model should train on the prepared character dataset and save a checkpoint for later labs.
 
 ## Required Artifacts
 
@@ -39,14 +47,14 @@ loss_curve.png
 
 ## Checks
 
-Grader будет проверять:
+The checker will verify that:
 
-- training starts and completes within timeout;
+- training starts and completes within the timeout;
 - `train_loss_final < train_loss_initial`;
 - `val_loss` is finite;
 - `model.pt` exists and is not too large;
-- generated samples are non-empty.
+- generated samples are not empty.
 
 ## Submission Notes
 
-Держите модель маленькой. Цель этой лабораторной - понять training loop, а не добиться высокого качества текста.
+Keep the model small. The goal of this lab is to understand the training loop, not to produce perfect text.

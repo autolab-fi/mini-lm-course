@@ -1,17 +1,25 @@
+---
+index: 11
+module: module_1
+task: lab_05_generation_and_sampling
+previous: lab_04_neural_char_lm
+next: lab_06_evaluation
+---
+
 # Lab 05: Generation and Sampling
 
 ## Objective
 
-Понять prompt, `max_new_tokens`, temperature и stochastic sampling.
+Understand prompt, `max_new_tokens`, temperature, and stochastic sampling.
 
 ## Task
 
-Реализуйте CLI для генерации текста из checkpoint, полученного в `Lab 04`.
+Implement a command-line generation script that loads the checkpoint from `Lab 04`.
 
 Expected command:
 
 ```bash
-python generate.py --prompt "the robot" --max-new-tokens 100 --temperature 0.8
+python3 generate.py --prompt "the robot" --max-new-tokens 100 --temperature 0.8
 ```
 
 ## Required Artifacts
@@ -23,14 +31,14 @@ generation_report.md
 
 ## Checks
 
-Grader будет проверять:
+The checker will verify that:
 
-- `generate.py` accepts prompt;
-- checkpoint loads without retraining;
-- outputs are non-empty;
+- `generate.py` accepts a prompt;
+- the checkpoint loads without retraining;
+- outputs are not empty;
 - latency is reported;
 - low and high temperature outputs are compared.
 
 ## Submission Notes
 
-В отчете коротко объясните, что меняется при низкой и высокой temperature.
+In the report, briefly explain how generated text changes when temperature is low or high.
