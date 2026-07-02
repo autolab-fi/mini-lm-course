@@ -1,6 +1,6 @@
 ---
 index: 8
-module: module_1
+module: module_3
 task: lab_03_07_text_generation
 previous: lab_03_06_validation_loss
 next: lab_03_08_final_submission

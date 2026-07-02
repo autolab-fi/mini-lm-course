@@ -2,7 +2,7 @@
 index: 0
 module: module_0
 task: course_overview
-next: lab_01_dataset_preparation
+next: lab_01_01_what_is_text_dataset
 ---
 
 # Mini Language Model Course

@@ -1,6 +1,6 @@
 ---
 index: 2
-module: module_1
+module: module_3
 task: lab_03_01_intro_to_character_lm
 previous: lab_02_character_tokenizer
 next: lab_03_02_reading_dataset

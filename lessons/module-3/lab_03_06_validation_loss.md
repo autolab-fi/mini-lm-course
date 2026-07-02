@@ -1,6 +1,6 @@
 ---
 index: 7
-module: module_1
+module: module_3
 task: lab_03_06_validation_loss
 previous: lab_03_05_probabilities
 next: lab_03_07_text_generation

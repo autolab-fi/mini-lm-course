@@ -24,7 +24,8 @@ Prepared in this course repository:
 - course metadata in `course-info.json`
 - module and lesson structure in `lessons-list.json`
 - overview lesson in `lessons/module-0/course_overview.md`
-- lab placeholders for `Lab 01` through `Lab 08`
+- `Lab 01` as a checked step-by-step dataset preparation module
+- `Lab 02` as a separate tokenizer module placeholder
 - step-by-step English lessons for `Lab 03.1` through `Lab 03.8`
 - browser editor starter code in `lessons-list.json` under each lesson's `template` field
 - course-side verification functions in `verifications/module_1.py`

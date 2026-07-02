@@ -1,6 +1,6 @@
 ---
 index: 14
-module: module_1
+module: module_4
 task: lab_08_raspberry_pi_edge_demo
 previous: lab_07_deployment_cli_api_demo
 ---

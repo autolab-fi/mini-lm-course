@@ -1,6 +1,6 @@
 ---
 index: 9
-module: module_1
+module: module_3
 task: lab_03_08_final_submission
 previous: lab_03_07_text_generation
 next: lab_04_neural_char_lm

@@ -1,6 +1,6 @@
 ---
 index: 5
-module: module_1
+module: module_3
 task: lab_03_04_bigram_counts
 previous: lab_03_03_character_vocabulary
 next: lab_03_05_probabilities

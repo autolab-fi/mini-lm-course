@@ -1,6 +1,6 @@
 ---
 index: 6
-module: module_1
+module: module_3
 task: lab_03_05_probabilities
 previous: lab_03_04_bigram_counts
 next: lab_03_06_validation_loss

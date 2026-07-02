@@ -1,6 +1,6 @@
 ---
 index: 12
-module: module_1
+module: module_4
 task: lab_06_evaluation
 previous: lab_05_generation_and_sampling
 next: lab_07_deployment_cli_api_demo

@@ -1,6 +1,6 @@
 ---
 index: 3
-module: module_1
+module: module_3
 task: lab_03_02_reading_dataset
 previous: lab_03_01_intro_to_character_lm
 next: lab_03_03_character_vocabulary

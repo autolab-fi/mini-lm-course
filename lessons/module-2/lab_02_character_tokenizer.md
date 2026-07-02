@@ -1,8 +1,8 @@
 ---
 index: 1
-module: module_1
+module: module_2
 task: lab_02_character_tokenizer
-previous: lab_01_dataset_preparation
+previous: lab_01_07_final_dataset_submission
 next: lab_03_01_intro_to_character_lm
 ---
 

@@ -17,6 +17,48 @@ DEFAULT_LIMITS = {
 
 
 TASKS = {
+    "lab_01_01_what_is_text_dataset": {
+        "filename": "main.py",
+        "command": "python main.py",
+        "required_artifacts": [],
+        "limits": DEFAULT_LIMITS,
+    },
+    "lab_01_02_reading_raw_text": {
+        "filename": "main.py",
+        "command": "python main.py",
+        "required_artifacts": [],
+        "limits": DEFAULT_LIMITS,
+    },
+    "lab_01_03_cleaning_text": {
+        "filename": "main.py",
+        "command": "python main.py",
+        "required_artifacts": [],
+        "limits": DEFAULT_LIMITS,
+    },
+    "lab_01_04_splitting_dataset": {
+        "filename": "main.py",
+        "command": "python main.py",
+        "required_artifacts": [],
+        "limits": DEFAULT_LIMITS,
+    },
+    "lab_01_05_dataset_statistics": {
+        "filename": "main.py",
+        "command": "python main.py",
+        "required_artifacts": [],
+        "limits": DEFAULT_LIMITS,
+    },
+    "lab_01_06_writing_artifacts": {
+        "filename": "main.py",
+        "command": "python main.py",
+        "required_artifacts": ["train.txt", "val.txt", "test.txt", "stats.json", "dataset_card.md"],
+        "limits": DEFAULT_LIMITS,
+    },
+    "lab_01_07_final_dataset_submission": {
+        "filename": "prepare_dataset.py",
+        "command": "python prepare_dataset.py",
+        "required_artifacts": ["train.txt", "val.txt", "test.txt", "stats.json", "dataset_card.md"],
+        "limits": DEFAULT_LIMITS,
+    },
     "lab_03_01_intro_to_character_lm": {
         "filename": "main.py",
         "command": "python main.py",
@@ -186,6 +228,126 @@ def _load_json(path: Path) -> tuple[Any | None, str | None]:
 
 def _artifact_path(context: dict[str, Any], name: str) -> Path:
     return Path(str(context["artifacts_dir"])) / name
+
+
+def lab_01_01_what_is_text_dataset(context: dict[str, Any]) -> dict[str, Any]:
+    stdout = _stdout(context)
+    checks = [
+        _runtime_check(context),
+        _passed("character_count", 25, "Printed character count.")
+        if _extract_float_after_label(stdout, "Characters:") is not None
+        else _failed("character_count", 25, "Print Characters: <number>."),
+        _passed("line_count", 25, "Printed line count.")
+        if _extract_float_after_label(stdout, "Lines:") is not None
+        else _failed("line_count", 25, "Print Lines: <number>."),
+        _passed("unique_characters", 30, "Printed unique characters as a list.")
+        if _extract_list_after_label(stdout, "Unique characters") is not None
+        else _failed("unique_characters", 30, "Print Unique characters as a Python list."),
+    ]
+    return _result(checks)
+
+
+def lab_01_02_reading_raw_text(context: dict[str, Any]) -> dict[str, Any]:
+    stdout = _stdout(context)
+    raw_chars = _extract_float_after_label(stdout, "Raw characters:")
+    checks = [
+        _runtime_check(context),
+        _passed("raw_characters", 50, "Printed a positive raw character count.")
+        if raw_chars is not None and raw_chars > 0
+        else _failed("raw_characters", 50, "Print Raw characters: <positive number>."),
+        _passed("preview", 30, "Printed a text preview.")
+        if "Preview:" in stdout and len(stdout.split("Preview:", 1)[1].strip()) > 0
+        else _failed("preview", 30, "Print Preview: followed by text."),
+    ]
+    return _result(checks)
+
+
+def lab_01_03_cleaning_text(context: dict[str, Any]) -> dict[str, Any]:
+    stdout = _stdout(context)
+    clean_chars = _extract_float_after_label(stdout, "Clean characters:")
+    clean_lines = _extract_float_after_label(stdout, "Clean lines:")
+    checks = [
+        _runtime_check(context),
+        _passed("clean_characters", 30, "Printed a positive clean character count.")
+        if clean_chars is not None and clean_chars > 0
+        else _failed("clean_characters", 30, "Print Clean characters: <positive number>."),
+        _passed("clean_lines", 30, "Printed a positive clean line count.")
+        if clean_lines is not None and clean_lines > 0
+        else _failed("clean_lines", 30, "Print Clean lines: <positive number>."),
+        _passed("normalized_output", 20, "Output does not contain carriage-return characters.")
+        if "\r" not in stdout
+        else _failed("normalized_output", 20, "Normalize carriage returns to \\n."),
+    ]
+    return _result(checks)
+
+
+def lab_01_04_splitting_dataset(context: dict[str, Any]) -> dict[str, Any]:
+    stdout = _stdout(context)
+    train = _extract_float_after_label(stdout, "Train characters:")
+    val = _extract_float_after_label(stdout, "Validation characters:")
+    test = _extract_float_after_label(stdout, "Test characters:")
+    checks = [
+        _runtime_check(context),
+        _passed("split_counts", 40, "Printed positive split sizes.")
+        if train and val and test and train > 0 and val > 0 and test > 0
+        else _failed("split_counts", 40, "Print positive Train, Validation, and Test character counts."),
+        _passed("train_is_largest", 40, "Train split is larger than validation and test.")
+        if train and val and test and train > val and train > test
+        else _failed("train_is_largest", 40, "The train split should be larger than validation and test."),
+    ]
+    return _result(checks)
+
+
+def lab_01_05_dataset_statistics(context: dict[str, Any]) -> dict[str, Any]:
+    stdout = _stdout(context)
+    stats = None
+    if "Stats:" in stdout:
+        try:
+            stats = ast.literal_eval(stdout.split("Stats:", 1)[1].strip().splitlines()[0])
+        except Exception:
+            stats = None
+    checks = [
+        _runtime_check(context),
+        _passed("stats_object", 30, "Printed a stats dictionary.")
+        if isinstance(stats, dict)
+        else _failed("stats_object", 30, "Print Stats: followed by a Python dictionary."),
+        _passed("stats_fields", 50, "Stats contains num_chars, num_lines, and vocab_chars.")
+        if isinstance(stats, dict)
+        and isinstance(stats.get("num_chars"), int)
+        and stats.get("num_chars", 0) > 0
+        and isinstance(stats.get("num_lines"), int)
+        and stats.get("num_lines", 0) > 0
+        and isinstance(stats.get("vocab_chars"), list)
+        and len(stats.get("vocab_chars", [])) > 0
+        else _failed("stats_fields", 50, "Stats must contain positive num_chars, positive num_lines, and non-empty vocab_chars."),
+    ]
+    return _result(checks)
+
+
+def lab_01_06_writing_artifacts(context: dict[str, Any]) -> dict[str, Any]:
+    missing = context.get("missing_artifacts", [])
+    oversized = context.get("oversized_artifacts", [])
+    checks = [
+        _runtime_check(context, max_points=20),
+        _dataset_required_artifacts_check(missing, oversized, max_points=30),
+        _dataset_text_splits_check(context, max_points=25),
+        _dataset_stats_check(context, max_points=15),
+        _dataset_card_check(context, max_points=10),
+    ]
+    return _result(checks)
+
+
+def lab_01_07_final_dataset_submission(context: dict[str, Any]) -> dict[str, Any]:
+    missing = context.get("missing_artifacts", [])
+    oversized = context.get("oversized_artifacts", [])
+    checks = [
+        _runtime_check(context, max_points=10),
+        _dataset_required_artifacts_check(missing, oversized, max_points=20),
+        _dataset_text_splits_check(context, max_points=30),
+        _dataset_stats_check(context, max_points=25),
+        _dataset_card_check(context, max_points=15),
+    ]
+    return _result(checks)
 
 
 def lab_03_01_intro_to_character_lm(context: dict[str, Any]) -> dict[str, Any]:
@@ -382,6 +544,59 @@ def _artifact_size_check(oversized: list[str]) -> dict[str, Any]:
     if oversized:
         return _failed("artifact_sizes", 10, f"Oversized artifact(s): {', '.join(oversized)}")
     return _passed("artifact_sizes", 10, "Artifact sizes are within limits.")
+
+
+def _dataset_required_artifacts_check(missing: list[str], oversized: list[str], max_points: int) -> dict[str, Any]:
+    if missing:
+        return _failed("required_files", max_points, f"Missing required artifact(s): {', '.join(missing)}")
+    if oversized:
+        return _failed("required_files", max_points, f"Oversized artifact(s): {', '.join(oversized)}")
+    return _passed("required_files", max_points, "All dataset artifacts were found.")
+
+
+def _dataset_text_splits_check(context: dict[str, Any], max_points: int) -> dict[str, Any]:
+    train_path = _artifact_path(context, "train.txt")
+    val_path = _artifact_path(context, "val.txt")
+    test_path = _artifact_path(context, "test.txt")
+    try:
+        train_text = train_path.read_text(encoding="utf-8")
+        val_text = val_path.read_text(encoding="utf-8")
+        test_text = test_path.read_text(encoding="utf-8")
+    except Exception as exc:
+        return _failed("text_splits", max_points, f"Could not read split files as UTF-8: {exc}")
+    if not train_text or not val_text or not test_text:
+        return _failed("text_splits", max_points, "train.txt, val.txt, and test.txt must be non-empty.")
+    if not (len(train_text) > len(val_text) and len(train_text) > len(test_text)):
+        return _failed("text_splits", max_points, "train.txt must be larger than val.txt and test.txt.")
+    if train_text == val_text or train_text == test_text or val_text == test_text:
+        return _failed("text_splits", max_points, "Split files should not be identical.")
+    return _passed("text_splits", max_points, "Dataset split files are valid UTF-8 and non-empty.")
+
+
+def _dataset_stats_check(context: dict[str, Any], max_points: int) -> dict[str, Any]:
+    data, error = _load_json(_artifact_path(context, "stats.json"))
+    if error:
+        return _failed("stats_json", max_points, f"stats.json is not valid JSON: {error}")
+    if not isinstance(data, dict):
+        return _failed("stats_json", max_points, "stats.json must contain a JSON object.")
+    if not isinstance(data.get("num_chars"), int) or data["num_chars"] <= 0:
+        return _failed("stats_json", max_points, "num_chars must be a positive integer.")
+    if not isinstance(data.get("num_lines"), int) or data["num_lines"] <= 0:
+        return _failed("stats_json", max_points, "num_lines must be a positive integer.")
+    vocab_chars = data.get("vocab_chars")
+    if not isinstance(vocab_chars, list) or not vocab_chars or not all(isinstance(char, str) for char in vocab_chars):
+        return _failed("stats_json", max_points, "vocab_chars must be a non-empty list of strings.")
+    return _passed("stats_json", max_points, "stats.json contains required dataset statistics.")
+
+
+def _dataset_card_check(context: dict[str, Any], max_points: int) -> dict[str, Any]:
+    path = _artifact_path(context, "dataset_card.md")
+    if not path.is_file():
+        return _failed("dataset_card", max_points, "dataset_card.md was not found.")
+    text = path.read_text(encoding="utf-8").strip()
+    if len(text) < 20:
+        return _failed("dataset_card", max_points, "dataset_card.md should contain a short dataset description.")
+    return _passed("dataset_card", max_points, "dataset_card.md contains a dataset description.")
 
 
 def _finite_number(value: Any) -> bool:

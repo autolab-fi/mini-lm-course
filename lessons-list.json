@@ -16,128 +16,200 @@
         ]
     },
     {
-        "name": "Mini LM Labs",
-        "description": "Hands-on labs for building a small language model in Python.",
+        "name": "Lab 01 - Dataset Preparation",
+        "description": "Prepare clean train, validation, and test text files for language model training.",
         "sn": 1,
         "str_id": "module_1",
         "lessons": [
             {
-                "str_id": "lab_01_dataset_preparation",
-                "name": "Lab 01: Dataset Preparation",
-                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-1/lab_01_dataset_preparation.md",
+                "str_id": "lab_01_01_what_is_text_dataset",
+                "name": "Lab 01.1: What Is a Text Dataset?",
+                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-1/lab_01_01_what_is_text_dataset.md",
                 "sn": 0,
-                "description": "Prepare train/validation/test splits and describe a text dataset.",
-                "template": "from pathlib import Path\nimport json\n\n# Write your dataset preparation code here.\n# Your program should create:\n# train.txt, val.txt, test.txt, stats.json, dataset_card.md\n\nprint(\"Dataset preparation starter\")"
+                "description": "Inspect a short text dataset and count characters, lines, and unique characters.",
+                "template": "text = \"robot moves forward\\nrobot turns left\\nmodel learns text\\n\"\n\nprint(text)\nprint(\"Characters:\", len(text))\nprint(\"Lines:\", len(text.splitlines()))\nprint(\"Unique characters:\", sorted(set(text)))\n"
             },
+            {
+                "str_id": "lab_01_02_reading_raw_text",
+                "name": "Lab 01.2: Reading Raw Text",
+                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-1/lab_01_02_reading_raw_text.md",
+                "sn": 1,
+                "description": "Create and read a raw UTF-8 text file with pathlib.",
+                "template": "from pathlib import Path\n\nraw_text = \"robot moves forward\\nrobot turns left\\nmodel learns text\\n\"\nraw_path = Path(\"raw_text.txt\")\nraw_path.write_text(raw_text, encoding=\"utf-8\")\n\n# TODO: read raw_path as UTF-8 text\ntext = \"\"\n\nprint(\"Raw characters:\", len(text))\nprint(\"Preview:\", text[:80])\n"
+            },
+            {
+                "str_id": "lab_01_03_cleaning_text",
+                "name": "Lab 01.3: Cleaning Text",
+                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-1/lab_01_03_cleaning_text.md",
+                "sn": 2,
+                "description": "Normalize newlines, trim trailing spaces, and keep one final newline.",
+                "template": "raw_text = \"\\nrobot moves forward  \\r\\nrobot turns left\\r\\nmodel learns text  \\n\\n\"\n\n\ndef clean_text(text):\n    # TODO: normalize Windows newlines to \\n\n    # TODO: remove trailing spaces on each line\n    # TODO: remove empty lines at the beginning and end\n    # TODO: return cleaned text with one final newline\n    return text\n\n\ncleaned = clean_text(raw_text)\nprint(\"Clean characters:\", len(cleaned))\nprint(\"Clean lines:\", len(cleaned.splitlines()))\nprint(cleaned)\n"
+            },
+            {
+                "str_id": "lab_01_04_splitting_dataset",
+                "name": "Lab 01.4: Splitting Train, Validation, and Test",
+                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-1/lab_01_04_splitting_dataset.md",
+                "sn": 3,
+                "description": "Split cleaned text into train, validation, and test strings.",
+                "template": "text = (\"robot moves forward. robot turns left. model learns text.\\n\" * 20)\n\n\ndef split_text(text, train_ratio=0.8, val_ratio=0.1):\n    # TODO: calculate split indexes\n    train_text = \"\"\n    val_text = \"\"\n    test_text = \"\"\n    return train_text, val_text, test_text\n\n\ntrain_text, val_text, test_text = split_text(text)\nprint(\"Train characters:\", len(train_text))\nprint(\"Validation characters:\", len(val_text))\nprint(\"Test characters:\", len(test_text))\n"
+            },
+            {
+                "str_id": "lab_01_05_dataset_statistics",
+                "name": "Lab 01.5: Dataset Statistics",
+                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-1/lab_01_05_dataset_statistics.md",
+                "sn": 4,
+                "description": "Build stats.json fields: num_chars, num_lines, and vocab_chars.",
+                "template": "text = \"robot moves forward\\nrobot turns left\\nmodel learns text\\n\"\n\n\ndef build_stats(text):\n    # TODO: return a dictionary with num_chars, num_lines, vocab_chars\n    return {}\n\n\nstats = build_stats(text)\nprint(\"Stats:\", stats)\n"
+            },
+            {
+                "str_id": "lab_01_06_writing_artifacts",
+                "name": "Lab 01.6: Writing Dataset Artifacts",
+                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-1/lab_01_06_writing_artifacts.md",
+                "sn": 5,
+                "description": "Write train.txt, val.txt, test.txt, stats.json, and dataset_card.md.",
+                "template": "from pathlib import Path\nimport json\n\ntrain_text = \"robot moves forward\\n\" * 10\nval_text = \"robot turns left\\n\" * 2\ntest_text = \"model learns text\\n\" * 2\nstats = {\n    \"num_chars\": len(train_text + val_text + test_text),\n    \"num_lines\": len((train_text + val_text + test_text).splitlines()),\n    \"vocab_chars\": sorted(set(train_text + val_text + test_text)),\n}\n\n# TODO: write train.txt, val.txt, test.txt, stats.json, dataset_card.md\n\nfor filename in [\"train.txt\", \"val.txt\", \"test.txt\", \"stats.json\", \"dataset_card.md\"]:\n    print(\"Wrote:\", filename)\n"
+            },
+            {
+                "str_id": "lab_01_07_final_dataset_submission",
+                "name": "Lab 01.7: Final Dataset Submission",
+                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-1/lab_01_07_final_dataset_submission.md",
+                "sn": 6,
+                "description": "Create the complete dataset preparation submission and required artifacts.",
+                "template": "from pathlib import Path\nimport json\n\nRAW_TEXT = \"\"\"\nrobot moves forward and reads sensors.\nrobot turns left and follows a line.\nsmall language models learn from text.\npython code prepares clean datasets.\n\"\"\" * 30\n\n\ndef clean_text(text):\n    text = text.replace(\"\\r\\n\", \"\\n\").replace(\"\\r\", \"\\n\")\n    lines = [line.rstrip() for line in text.split(\"\\n\")]\n    cleaned = \"\\n\".join(lines).strip()\n    return cleaned + \"\\n\"\n\n\ndef split_text(text, train_ratio=0.8, val_ratio=0.1):\n    train_end = int(len(text) * train_ratio)\n    val_end = train_end + int(len(text) * val_ratio)\n    return text[:train_end], text[train_end:val_end], text[val_end:]\n\n\ndef build_stats(text):\n    return {\n        \"num_chars\": len(text),\n        \"num_lines\": len(text.splitlines()),\n        \"vocab_chars\": sorted(set(text)),\n    }\n\n\ndef main():\n    text = clean_text(RAW_TEXT)\n    train_text, val_text, test_text = split_text(text)\n    stats = build_stats(text)\n\n    Path(\"train.txt\").write_text(train_text, encoding=\"utf-8\")\n    Path(\"val.txt\").write_text(val_text, encoding=\"utf-8\")\n    Path(\"test.txt\").write_text(test_text, encoding=\"utf-8\")\n    Path(\"stats.json\").write_text(json.dumps(stats, ensure_ascii=False, indent=2), encoding=\"utf-8\")\n    Path(\"dataset_card.md\").write_text(\n        \"# Dataset Card\\n\\nSynthetic local text dataset for Mini LM course checks.\\n\",\n        encoding=\"utf-8\",\n    )\n    print(\"Dataset artifacts written\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+            }
+        ]
+    },
+    {
+        "name": "Lab 02 - Character Tokenizer",
+        "description": "Convert text to character token ids and decode ids back to text.",
+        "sn": 2,
+        "str_id": "module_2",
+        "lessons": [
             {
                 "str_id": "lab_02_character_tokenizer",
                 "name": "Lab 02: Character Tokenizer",
-                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-1/lab_02_character_tokenizer.md",
-                "sn": 1,
+                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-2/lab_02_character_tokenizer.md",
+                "sn": 0,
                 "description": "Implement encode/decode for a character tokenizer.",
                 "template": "import json\nfrom pathlib import Path\n\nclass Tokenizer:\n    def __init__(self, vocab):\n        self.vocab = vocab\n        self.char_to_id = {char: index for index, char in enumerate(vocab)}\n        self.id_to_char = {index: char for index, char in enumerate(vocab)}\n\n    def encode(self, text):\n        # TODO: return a list of integer token ids\n        return []\n\n    def decode(self, tokens):\n        # TODO: return the text represented by token ids\n        return \"\"\n\n    def save_tokenizer(self, path):\n        # TODO: save vocab and char_to_id as JSON\n        pass\n\n# Build and test your tokenizer here.\nprint(\"Tokenizer starter\")"
-            },
+            }
+        ]
+    },
+    {
+        "name": "Lab 03 - Bigram Character Language Model",
+        "description": "Build and evaluate a count-based next-character baseline model.",
+        "sn": 3,
+        "str_id": "module_3",
+        "lessons": [
             {
                 "str_id": "lab_03_01_intro_to_character_lm",
                 "name": "Lab 03.1: What Is a Character Language Model?",
-                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-1/lab_03_01_intro_to_character_lm.md",
-                "sn": 2,
+                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-3/lab_03_01_intro_to_character_lm.md",
+                "sn": 0,
                 "description": "See text as neighboring character pairs for next-character prediction.",
                 "template": "text = \"hello\"\n\n# Print every neighboring character pair.\nfor current_char, next_char in zip(text, text[1:]):\n    print(current_char, \"->\", next_char)\n\n# Try changing the text and run again."
             },
             {
                 "str_id": "lab_03_02_reading_dataset",
                 "name": "Lab 03.2: Reading the Dataset",
-                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-1/lab_03_02_reading_dataset.md",
-                "sn": 3,
+                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-3/lab_03_02_reading_dataset.md",
+                "sn": 1,
                 "description": "Read train.txt and val.txt from the checker dataset directory.",
                 "template": "from pathlib import Path\nimport os\n\nDATASETS_DIR = Path(os.environ.get(\"DATASETS_DIR\", \"/datasets\"))\nDATASET_DIR = DATASETS_DIR / \"toy_chars_100kb\"\n\ntrain_text = (DATASET_DIR / \"train.txt\").read_text(encoding=\"utf-8\")\nval_text = (DATASET_DIR / \"val.txt\").read_text(encoding=\"utf-8\")\n\nprint(\"Train characters:\", len(train_text))\nprint(\"Validation characters:\", len(val_text))\nprint(\"First 200 training characters:\")\nprint(train_text[:200])"
             },
             {
                 "str_id": "lab_03_03_character_vocabulary",
                 "name": "Lab 03.3: Building a Character Vocabulary",
-                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-1/lab_03_03_character_vocabulary.md",
-                "sn": 4,
+                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-3/lab_03_03_character_vocabulary.md",
+                "sn": 2,
                 "description": "Create vocab and char_to_id mappings for matrix indexing.",
                 "template": "from pathlib import Path\nimport os\n\nDATASETS_DIR = Path(os.environ.get(\"DATASETS_DIR\", \"/datasets\"))\nDATASET_DIR = DATASETS_DIR / \"toy_chars_100kb\"\ntrain_text = (DATASET_DIR / \"train.txt\").read_text(encoding=\"utf-8\")\n\n\ndef build_vocab(text):\n    # TODO: create a sorted list of unique characters\n    vocab = []\n\n    # TODO: create a dictionary that maps every character to an integer id\n    char_to_id = {}\n\n    return vocab, char_to_id\n\n\nvocab, char_to_id = build_vocab(train_text)\n\nprint(\"Vocabulary size:\", len(vocab))\nprint(\"First 10 characters:\", vocab[:10])\nprint(\"ID of space:\", char_to_id.get(\" \"))"
             },
             {
                 "str_id": "lab_03_04_bigram_counts",
                 "name": "Lab 03.4: Counting Bigrams",
-                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-1/lab_03_04_bigram_counts.md",
-                "sn": 5,
+                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-3/lab_03_04_bigram_counts.md",
+                "sn": 3,
                 "description": "Build a square counts matrix for current-character to next-character transitions.",
                 "template": "from pathlib import Path\nimport os\n\nDATASETS_DIR = Path(os.environ.get(\"DATASETS_DIR\", \"/datasets\"))\nDATASET_DIR = DATASETS_DIR / \"toy_chars_100kb\"\ntrain_text = (DATASET_DIR / \"train.txt\").read_text(encoding=\"utf-8\")\n\n\ndef build_vocab(text):\n    vocab = sorted(set(text))\n    char_to_id = {char: index for index, char in enumerate(vocab)}\n    return vocab, char_to_id\n\n\ndef create_empty_counts(vocab_size):\n    # TODO: create a square matrix filled with zeros\n    counts = []\n    return counts\n\n\ndef count_bigrams(text, char_to_id, vocab_size):\n    counts = create_empty_counts(vocab_size)\n\n    # TODO: loop over neighboring character pairs and update counts\n\n    return counts\n\n\nvocab, char_to_id = build_vocab(train_text)\ncounts = count_bigrams(train_text, char_to_id, len(vocab))\n\nprint(\"Vocabulary size:\", len(vocab))\nprint(\"Matrix rows:\", len(counts))\nprint(\"First row:\", counts[0] if counts else [])"
             },
             {
                 "str_id": "lab_03_05_probabilities",
                 "name": "Lab 03.5: From Counts to Probabilities",
-                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-1/lab_03_05_probabilities.md",
-                "sn": 6,
+                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-3/lab_03_05_probabilities.md",
+                "sn": 4,
                 "description": "Convert a row of bigram counts into smoothed probabilities.",
                 "template": "def row_probabilities(row):\n    # TODO: use add-one smoothing\n    # probability = (count + 1) / (row_sum + vocab_size)\n    probabilities = []\n    return probabilities\n\n\nexample_row = [0, 4, 1, 0]\nprobabilities = row_probabilities(example_row)\n\nprint(\"Counts:\", example_row)\nprint(\"Probabilities:\", probabilities)\nprint(\"Sum:\", sum(probabilities))"
             },
             {
                 "str_id": "lab_03_06_validation_loss",
                 "name": "Lab 03.6: Validation Loss and Perplexity",
-                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-1/lab_03_06_validation_loss.md",
-                "sn": 7,
+                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-3/lab_03_06_validation_loss.md",
+                "sn": 5,
                 "description": "Evaluate the bigram model with negative log likelihood and perplexity.",
                 "template": "from pathlib import Path\nimport math\nimport os\n\nDATASETS_DIR = Path(os.environ.get(\"DATASETS_DIR\", \"/datasets\"))\nDATASET_DIR = DATASETS_DIR / \"toy_chars_100kb\"\ntrain_text = (DATASET_DIR / \"train.txt\").read_text(encoding=\"utf-8\")\nval_text = (DATASET_DIR / \"val.txt\").read_text(encoding=\"utf-8\")\n\n\ndef build_vocab(text):\n    vocab = sorted(set(text))\n    char_to_id = {char: index for index, char in enumerate(vocab)}\n    return vocab, char_to_id\n\n\ndef create_empty_counts(vocab_size):\n    return [[0 for _ in range(vocab_size)] for _ in range(vocab_size)]\n\n\ndef count_bigrams(text, char_to_id, vocab_size):\n    counts = create_empty_counts(vocab_size)\n    for current_char, next_char in zip(text, text[1:]):\n        counts[char_to_id[current_char]][char_to_id[next_char]] += 1\n    return counts\n\n\ndef row_probabilities(row):\n    # TODO: implement add-one smoothing\n    return []\n\n\ndef compute_val_loss(text, counts, char_to_id):\n    losses = []\n\n    # TODO: compute -math.log(probability) for each known validation pair\n\n    return sum(losses) / len(losses)\n\n\nvocab, char_to_id = build_vocab(train_text)\ncounts = count_bigrams(train_text, char_to_id, len(vocab))\nval_loss = compute_val_loss(val_text, counts, char_to_id)\nperplexity = math.exp(val_loss)\n\nprint(\"Validation loss:\", val_loss)\nprint(\"Perplexity:\", perplexity)"
             },
             {
                 "str_id": "lab_03_07_text_generation",
                 "name": "Lab 03.7: Generating Text",
-                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-1/lab_03_07_text_generation.md",
-                "sn": 8,
+                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-3/lab_03_07_text_generation.md",
+                "sn": 6,
                 "description": "Generate text by repeatedly sampling the next character from bigram probabilities.",
                 "template": "from pathlib import Path\nimport os\nimport random\n\nDATASETS_DIR = Path(os.environ.get(\"DATASETS_DIR\", \"/datasets\"))\nDATASET_DIR = DATASETS_DIR / \"toy_chars_100kb\"\ntrain_text = (DATASET_DIR / \"train.txt\").read_text(encoding=\"utf-8\")\n\n\ndef build_vocab(text):\n    vocab = sorted(set(text))\n    char_to_id = {char: index for index, char in enumerate(vocab)}\n    return vocab, char_to_id\n\n\ndef create_empty_counts(vocab_size):\n    return [[0 for _ in range(vocab_size)] for _ in range(vocab_size)]\n\n\ndef count_bigrams(text, char_to_id, vocab_size):\n    counts = create_empty_counts(vocab_size)\n    for current_char, next_char in zip(text, text[1:]):\n        counts[char_to_id[current_char]][char_to_id[next_char]] += 1\n    return counts\n\n\ndef row_probabilities(row):\n    total = sum(row) + len(row)\n    return [(count + 1) / total for count in row]\n\n\ndef sample_next_char(row, vocab):\n    # TODO: use random.choices with probabilities from row_probabilities(row)\n    return \"\"\n\n\ndef generate(prompt, counts, vocab, char_to_id, max_new_chars=100):\n    # TODO: generate one character at a time\n    return prompt\n\n\nrandom.seed(42)\nvocab, char_to_id = build_vocab(train_text)\ncounts = count_bigrams(train_text, char_to_id, len(vocab))\n\nprint(generate(\"t\", counts, vocab, char_to_id))"
             },
             {
                 "str_id": "lab_03_08_final_submission",
                 "name": "Lab 03.8: Final Bigram Submission",
-                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-1/lab_03_08_final_submission.md",
-                "sn": 9,
+                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-3/lab_03_08_final_submission.md",
+                "sn": 7,
                 "description": "Assemble train_bigram.py and save all required artifacts for the checker.",
                 "template": "from pathlib import Path\nimport json\nimport math\nimport os\nimport random\n\nDATASETS_DIR = Path(os.environ.get(\"DATASETS_DIR\", \"/datasets\"))\nDATASET_DIR = DATASETS_DIR / \"toy_chars_100kb\"\nTRAIN_PATH = DATASET_DIR / \"train.txt\"\nVAL_PATH = DATASET_DIR / \"val.txt\"\n\n\ndef build_vocab(text):\n    vocab = sorted(set(text))\n    char_to_id = {char: index for index, char in enumerate(vocab)}\n    return vocab, char_to_id\n\n\ndef create_empty_counts(vocab_size):\n    return [[0 for _ in range(vocab_size)] for _ in range(vocab_size)]\n\n\ndef count_bigrams(text, char_to_id, vocab_size):\n    counts = create_empty_counts(vocab_size)\n    for current_char, next_char in zip(text, text[1:]):\n        current_id = char_to_id[current_char]\n        next_id = char_to_id[next_char]\n        counts[current_id][next_id] += 1\n    return counts\n\n\ndef row_probabilities(row):\n    # TODO: implement add-one smoothing\n    return []\n\n\ndef compute_val_loss(text, counts, char_to_id):\n    losses = []\n\n    # TODO: compute validation negative log likelihood\n\n    return sum(losses) / len(losses)\n\n\ndef sample_next_char(row, vocab):\n    probabilities = row_probabilities(row)\n    return random.choices(vocab, weights=probabilities, k=1)[0]\n\n\ndef generate(prompt, counts, vocab, char_to_id, max_new_chars=160):\n    if not prompt:\n        prompt = random.choice(vocab)\n\n    output = prompt\n    current_char = output[-1]\n\n    for _ in range(max_new_chars):\n        if current_char not in char_to_id:\n            current_char = random.choice(vocab)\n        else:\n            current_id = char_to_id[current_char]\n            current_char = sample_next_char(counts[current_id], vocab)\n        output += current_char\n\n    return output\n\n\ndef main():\n    random.seed(42)\n\n    train_text = TRAIN_PATH.read_text(encoding=\"utf-8\")\n    val_text = VAL_PATH.read_text(encoding=\"utf-8\")\n\n    vocab, char_to_id = build_vocab(train_text)\n    counts = count_bigrams(train_text, char_to_id, len(vocab))\n    val_loss = compute_val_loss(val_text, counts, char_to_id)\n    perplexity = math.exp(val_loss)\n\n    samples = [\n        {\"prompt\": \"t\", \"generated_text\": generate(\"t\", counts, vocab, char_to_id)},\n        {\"prompt\": \"r\", \"generated_text\": generate(\"r\", counts, vocab, char_to_id)},\n        {\"prompt\": \"\\n\", \"generated_text\": generate(\"\\n\", counts, vocab, char_to_id)}\n    ]\n\n    Path(\"bigram_counts.json\").write_text(\n        json.dumps(\n            {\"vocab\": vocab, \"char_to_id\": char_to_id, \"counts\": counts},\n            ensure_ascii=False,\n            indent=2\n        ),\n        encoding=\"utf-8\"\n    )\n\n    Path(\"metrics.json\").write_text(\n        json.dumps(\n            {\n                \"vocab_size\": len(vocab),\n                \"train_chars\": len(train_text),\n                \"val_chars\": len(val_text),\n                \"val_loss\": val_loss,\n                \"perplexity\": perplexity\n            },\n            indent=2\n        ),\n        encoding=\"utf-8\"\n    )\n\n    Path(\"samples.json\").write_text(\n        json.dumps({\"samples\": samples}, ensure_ascii=False, indent=2),\n        encoding=\"utf-8\"\n    )\n\n    print(f\"trained bigram model with vocab_size={len(vocab)} val_loss={val_loss:.4f}\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
-            },
+            }
+        ]
+    },
+    {
+        "name": "Future Labs",
+        "description": "Neural language modeling, generation, evaluation, deployment, and edge demos.",
+        "sn": 4,
+        "str_id": "module_4",
+        "lessons": [
             {
                 "str_id": "lab_04_neural_char_lm",
                 "name": "Lab 04: Neural Char LM",
-                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-1/lab_04_neural_char_lm.md",
-                "sn": 10,
+                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-4/lab_04_neural_char_lm.md",
+                "sn": 0,
                 "description": "Train a small neural character LM with a training loop, validation, and checkpoint.",
                 "template": "# Neural language model starter.\n# This lab will use a small Python training script.\n\nprint(\"Neural Char LM starter\")"
             },
             {
                 "str_id": "lab_05_generation_and_sampling",
                 "name": "Lab 05: Generation and Sampling",
-                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-1/lab_05_generation_and_sampling.md",
-                "sn": 11,
+                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-4/lab_05_generation_and_sampling.md",
+                "sn": 1,
                 "description": "Use prompt, max_new_tokens, temperature, and stochastic sampling.",
                 "template": "import argparse\n\nparser = argparse.ArgumentParser()\nparser.add_argument(\"--prompt\", default=\"the robot\")\nparser.add_argument(\"--max-new-tokens\", type=int, default=100)\nparser.add_argument(\"--temperature\", type=float, default=0.8)\nargs = parser.parse_args()\n\nprint(\"Generation starter\")\nprint(\"Prompt:\", args.prompt)"
             },
             {
                 "str_id": "lab_06_evaluation",
                 "name": "Lab 06: Evaluation",
-                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-1/lab_06_evaluation.md",
-                "sn": 12,
+                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-4/lab_06_evaluation.md",
+                "sn": 2,
                 "description": "Compare baseline and neural model with validation loss, perplexity, and overfitting notes.",
                 "template": "import json\nimport math\nfrom pathlib import Path\n\n# Evaluation starter.\n# TODO: compare baseline and neural model metrics.\n\nprint(\"Evaluation starter\")"
             },
             {
                 "str_id": "lab_07_deployment_cli_api_demo",
                 "name": "Lab 07: Deployment CLI/API Demo",
-                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-1/lab_07_deployment_cli_api_demo.md",
-                "sn": 13,
+                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-4/lab_07_deployment_cli_api_demo.md",
+                "sn": 3,
                 "description": "Create a simple inference tool that loads a checkpoint and generates text.",
                 "template": "import argparse\n\nparser = argparse.ArgumentParser()\nparser.add_argument(\"--prompt\", default=\"robot moves\")\nparser.add_argument(\"--max-new-tokens\", type=int, default=100)\nargs = parser.parse_args()\n\n# TODO: load your checkpoint and generate text.\nprint(\"Deployment demo starter\")"
             },
             {
                 "str_id": "lab_08_raspberry_pi_edge_demo",
                 "name": "Lab 08: Raspberry Pi Edge Demo",
-                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-1/lab_08_raspberry_pi_edge_demo.md",
-                "sn": 14,
+                "url": "https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/lessons/module-4/lab_08_raspberry_pi_edge_demo.md",
+                "sn": 4,
                 "description": "Run inference on an edge environment and report latency, memory, and model size.",
                 "template": "import json\nimport time\nfrom pathlib import Path\n\nstart = time.time()\n\n# TODO: load model and generate a short sample on the edge device.\n\nlatency_ms = (time.time() - start) * 1000\n\nresult = {\n    \"device\": \"Raspberry Pi\",\n    \"model_size_mb\": 0,\n    \"latency_ms\": latency_ms,\n    \"memory_mb\": 0,\n    \"sample_output\": \"\"\n}\n\nPath(\"edge_demo.json\").write_text(json.dumps(result, indent=2), encoding=\"utf-8\")\nprint(\"Edge demo starter\")"
             }

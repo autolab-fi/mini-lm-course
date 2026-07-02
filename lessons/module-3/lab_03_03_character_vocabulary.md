@@ -1,6 +1,6 @@
 ---
 index: 4
-module: module_1
+module: module_3
 task: lab_03_03_character_vocabulary
 previous: lab_03_02_reading_dataset
 next: lab_03_04_bigram_counts

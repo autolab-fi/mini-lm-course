@@ -1,6 +1,6 @@
 ---
 index: 10
-module: module_1
+module: module_4
 task: lab_04_neural_char_lm
 previous: lab_03_08_final_submission
 next: lab_05_generation_and_sampling
