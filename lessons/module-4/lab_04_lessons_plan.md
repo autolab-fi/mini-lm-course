@@ -6,11 +6,19 @@ previous: lab_03_08_final_submission
 next: lab_04_01_neural_lm_overview
 ---
 
-# Lab 04 Lesson Plan: Neural Character Language Model
+# Lab 04 Lesson Plan: Tiny Neural Character Language Model
 
 ## Goal
 
 Turn `Lab 04` into a sequence of small lessons that gradually moves from the `Lab 03` bigram baseline to a trainable neural character model.
+
+The current implementation target is deliberately small and dependency-free:
+
+```text
+character id -> embedding vector -> linear logits -> softmax
+```
+
+This is a first neural model, not a recurrent model. A future `Lab 04B` or advanced extension can introduce `RNN/GRU` once the worker image includes an ML framework such as PyTorch.
 
 The final student submission should create:
 
@@ -106,7 +114,7 @@ Suggested CPU-safe model for the first implementation:
 character id -> embedding vector -> linear logits -> softmax
 ```
 
-Later versions may replace the linear layer with `RNN/GRU`, but the first checker can accept a tiny embedding-softmax model to avoid heavy dependencies.
+Later versions may replace the linear layer with `RNN/GRU`, but the current checker targets the tiny embedding-softmax model to avoid heavy dependencies.
 
 Checks:
 
@@ -260,4 +268,4 @@ The current prototype verifier supports only the final task:
 lab_04_neural_char_lm
 ```
 
-The current prototype sample is intentionally dependency-free and CPU-safe. A later PyTorch-based version can be added when the worker image includes `torch`.
+The current prototype sample is intentionally dependency-free and CPU-safe. A later PyTorch-based recurrent version can be added when the worker image includes `torch`.

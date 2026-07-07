@@ -6,11 +6,19 @@ previous: lab_03_08_final_submission
 next: lab_05_generation_and_sampling
 ---
 
-# Lab 04: Neural Char LM
+# Lab 04: Tiny Neural Char LM
 
 ## Objective
 
-Understand the training loop, loss, optimizer, validation, and checkpoint saving for a small neural character language model.
+Understand the training loop, loss, parameter updates, validation, and checkpoint saving for a small neural character language model.
+
+This first neural lab uses a dependency-free model that can run on CPU inside the current worker:
+
+```text
+character id -> embedding -> linear logits -> softmax
+```
+
+This is intentionally simpler than an RNN or GRU. A later extension can replace the linear output model with a recurrent layer after the worker image includes the needed ML libraries.
 
 ## Module Breakdown
 
@@ -34,10 +42,10 @@ See `lab_04_lessons_plan.md` for the detailed lesson-by-lesson plan.
 Train a small model with this structure:
 
 ```text
-character id -> embedding -> GRU/RNN -> linear -> next character logits
+character id -> embedding -> linear logits -> softmax probabilities
 ```
 
-The model should train on the prepared character dataset and save a checkpoint for later labs.
+The model should train on the prepared character dataset and save a checkpoint for later generation and evaluation labs.
 
 ## Required Artifacts
 
@@ -57,8 +65,8 @@ loss_curve.png
   "train_loss_final": 2.8,
   "val_loss": 2.95,
   "perplexity": 19.1,
-  "num_parameters": 120000,
-  "training_time_sec": 35.2
+  "num_parameters": 2145,
+  "training_time_sec": 5.4
 }
 ```
 
@@ -75,3 +83,5 @@ The checker will verify that:
 ## Submission Notes
 
 Keep the model small. The goal of this lab is to understand the training loop, not to produce perfect text.
+
+Do not use PyTorch, TensorFlow, or external downloads in the current version of this lab. Use the Python standard library so the checker can run the submission in the existing worker environment.
