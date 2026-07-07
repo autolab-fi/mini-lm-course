@@ -12,6 +12,23 @@ next: lab_05_generation_and_sampling
 
 Understand the training loop, loss, optimizer, validation, and checkpoint saving for a small neural character language model.
 
+## Module Breakdown
+
+This lab should be taught as a sequence of smaller lessons:
+
+```text
+04.1 Why a Neural LM?
+04.2 Turning Text Into Training Examples
+04.3 Model Configuration and Parameters
+04.4 Forward Pass, Softmax, and Loss
+04.5 Training Loop
+04.6 Validation Loss and Perplexity
+04.7 Sampling From the Neural Model
+04.8 Final Neural Char LM Submission
+```
+
+See `lab_04_lessons_plan.md` for the detailed lesson-by-lesson plan.
+
 ## Task
 
 Train a small model with this structure:
