@@ -1,8 +1,8 @@
 {
-    "fullCourseName": "Mini Language Model Course",
-    "shortCourseName": "Mini LM",
-    "shortDescription": "A practical course for building a small language model: dataset, tokenizer, baseline, neural LM, evaluation, and generation.",
-    "fullDescription": "This course guides students through the full workflow of building a small language model: preparing a text dataset, creating a character tokenizer, training a bigram baseline, training a neural character LM, generating text, evaluating models, and building a simple deployment demo. Each lab adds one new idea and saves artifacts that can be checked automatically.\n\nImage attribution: Cluster image adapted from Circumference C25 by Gareth Halfacree. Licensed under CC BY-SA 2.0. Source: https://commons.wikimedia.org/wiki/File:Circumference_C25_(40321335160).png. License: https://creativecommons.org/licenses/by-sa/2.0/. Cropped and stylized for use on Ondroid.",
+    "fullCourseName": "Mini Language Model Lab",
+    "shortCourseName": "Mini LM Lab",
+    "shortDescription": "A practical course where students build a mini language model and run checked labs on a real Raspberry Pi cluster.",
+    "fullDescription": "This course guides students through the full workflow of building a small language model: preparing a text dataset, creating a character tokenizer, training a bigram baseline, training a neural character language model, generating text, evaluating models, and building a simple deployment demo.\n\nThe course is connected to a real remote laboratory based on a Raspberry Pi cluster. Students submit Python code through the platform, and selected labs are checked automatically in an environment that mirrors practical edge and cluster computing workflows.\n\nEach lab introduces one new idea and produces artifacts that can be verified automatically, so students gradually move from raw text data to a working miniature language model.\n\nImage attribution: Cluster image adapted from Circumference C25 by Gareth Halfacree. Licensed under CC BY-SA 2.0. Source: https://commons.wikimedia.org/wiki/File:Circumference_C25_(40321335160).png. License: https://creativecommons.org/licenses/by-sa/2.0/. Cropped and stylized for use on Ondroid.",
     "imageSmall": "https://api.ondroid.org/media/courses/14/images/b88c8b4af2044b33aed1e23218990e08.png",
     "imageBig": "https://api.ondroid.org/media/courses/14/images/b88c8b4af2044b33aed1e23218990e08.png",
     "workload": "16-24 hours",
