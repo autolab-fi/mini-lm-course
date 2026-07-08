@@ -224,17 +224,23 @@ def lab_01_03_cleaning_text(context: dict[str, Any]) -> dict[str, Any]:
     stdout = _stdout(context)
     clean_chars = _extract_float_after_label(stdout, "Clean characters:")
     clean_lines = _extract_float_after_label(stdout, "Clean lines:")
+    expected_text = "summer rain begins\nquiet pages turn\nmodel learns text\n"
+    printed_text = stdout.split("Clean lines:", 1)[1] if "Clean lines:" in stdout else ""
+    printed_text = "\n".join(printed_text.splitlines()[1:])
     checks = [
         _runtime_check(context),
-        _passed("clean_characters", 30, "Printed a positive clean character count.")
-        if clean_chars is not None and clean_chars > 0
-        else _failed("clean_characters", 30, "Print Clean characters: <positive number>."),
-        _passed("clean_lines", 30, "Printed a positive clean line count.")
-        if clean_lines is not None and clean_lines > 0
-        else _failed("clean_lines", 30, "Print Clean lines: <positive number>."),
-        _passed("normalized_output", 20, "Output does not contain carriage-return characters.")
+        _passed("clean_characters", 20, "Printed the expected clean character count.")
+        if clean_chars == len(expected_text)
+        else _failed("clean_characters", 20, f"Clean characters should be {len(expected_text)} for the starter raw_text."),
+        _passed("clean_lines", 20, "Printed the expected clean line count.")
+        if clean_lines == 3
+        else _failed("clean_lines", 20, "Clean lines should be 3 for the starter raw_text."),
+        _passed("trimmed_text", 30, "Removed leading/trailing empty lines and trailing spaces.")
+        if expected_text.rstrip("\n") in printed_text and "begins  " not in printed_text and "text  " not in printed_text
+        else _failed("trimmed_text", 30, "Print cleaned text without leading empty lines or trailing spaces."),
+        _passed("normalized_output", 10, "Output does not contain carriage-return characters.")
         if "\r" not in stdout
-        else _failed("normalized_output", 20, "Normalize carriage returns to \\n."),
+        else _failed("normalized_output", 10, "Normalize carriage returns to \\n."),
     ]
     return _result(checks)
 
