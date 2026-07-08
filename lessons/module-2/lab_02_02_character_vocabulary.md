@@ -18,7 +18,9 @@ A character tokenizer needs a list of known characters. This list is called the 
 
 The order must be stable, because every character receives an id based on its position.
 
-![ASCII code chart showing characters and numeric codes](https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/images/commons/ascii-code-chart.svg)
+<figure style="background: #ffffff; padding: 16px; border-radius: 6px; border: 1px solid #e5e7eb;">
+  <img src="https://raw.githubusercontent.com/autolab-fi/mini-lm-course/main/images/commons/ascii-code-chart.svg" alt="ASCII code chart showing characters and numeric codes" style="display: block; width: 100%; height: auto;">
+</figure>
 
 *Image source: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:ASCII_Code_Chart.svg), Anomie, public domain.*
 
