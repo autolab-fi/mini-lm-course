@@ -36,6 +36,13 @@ Different systems may write line breaks differently:
 
 We normalize both to `\n`.
 
+## Python Tools Used
+
+- `text.replace(old, new)` replaces one substring with another. Docs: https://docs.python.org/3/library/stdtypes.html#str.replace
+- `line.rstrip()` removes whitespace from the right side of a line. Docs: https://docs.python.org/3/library/stdtypes.html#str.rstrip
+- `text.strip()` removes whitespace from both ends of a string. Docs: https://docs.python.org/3/library/stdtypes.html#str.strip
+- `"\\n".join(lines)` joins strings with newline separators. Docs: https://docs.python.org/3/library/stdtypes.html#str.join
+
 ## Assignment
 
 Implement:

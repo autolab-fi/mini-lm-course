@@ -42,6 +42,12 @@ Characters with higher probabilities are more likely to be chosen.
 
 The prompt gives the model a starting character or short text. The last character of the prompt becomes the current character.
 
+## Python Tools Used
+
+- `random.seed(42)` makes random sampling repeatable during testing. Docs: https://docs.python.org/3/library/random.html#random.seed
+- `random.choices(population, weights=..., k=1)` samples from weighted probabilities. Docs: https://docs.python.org/3/library/random.html#random.choices
+- `output += current_char` appends one character to the generated text. Docs: https://docs.python.org/3/reference/simple_stmts.html#augmented-assignment-statements
+
 ## Assignment
 
 Implement:

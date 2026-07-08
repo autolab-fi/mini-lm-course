@@ -22,6 +22,12 @@ Create a Python script that:
 4. saves `tokenizer.json`;
 5. saves `tokenizer_report.json`.
 
+## Python Tools Used
+
+- `Path("tokenizer.json").write_text(...)` writes the tokenizer artifact. Docs: https://docs.python.org/3/library/pathlib.html#pathlib.Path.write_text
+- `json.dumps(..., ensure_ascii=False, indent=2)` creates readable JSON output. Docs: https://docs.python.org/3/library/json.html#json.dumps
+- Function composition such as `decode(encode(text, char_to_id), id_to_char)` tests that two functions work together. Docs: https://docs.python.org/3/tutorial/controlflow.html#defining-functions
+
 ## Required Artifacts
 
 ```text

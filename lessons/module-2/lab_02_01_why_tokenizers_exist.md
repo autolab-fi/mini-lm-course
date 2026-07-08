@@ -42,6 +42,12 @@ Decoding converts integers back to text:
 [0, 1] -> "ab"
 ```
 
+## Python Tools Used
+
+- A dictionary maps keys to values, for example `{"a": 0}`. Docs: https://docs.python.org/3/tutorial/datastructures.html#dictionaries
+- A list comprehension such as `[char_to_id[char] for char in text]` builds a list from a loop. Docs: https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions
+- `"".join(parts)` joins decoded characters back into one string. Docs: https://docs.python.org/3/library/stdtypes.html#str.join
+
 ## Assignment
 
 Use a small hand-written mapping and print:

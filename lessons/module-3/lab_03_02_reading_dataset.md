@@ -74,6 +74,12 @@ We use:
 - `train.txt` to count patterns;
 - `val.txt` to measure how well the model predicts unseen text.
 
+## Python Tools Used
+
+- `os.environ.get("NAME", default)` reads an environment variable or returns a default. Docs: https://docs.python.org/3/library/os.html#os.environ
+- The `/` operator on `Path` joins path parts, for example `datasets_dir / dataset_id`. Docs: https://docs.python.org/3/library/pathlib.html#operators
+- `Path.read_text(encoding="utf-8")` reads the dataset file. Docs: https://docs.python.org/3/library/pathlib.html#pathlib.Path.read_text
+
 ## Assignment
 
 Read `train.txt` and `val.txt`, then print:

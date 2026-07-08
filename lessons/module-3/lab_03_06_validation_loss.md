@@ -56,6 +56,12 @@ perplexity = exp(loss)
 
 Lower loss and lower perplexity usually mean better predictions.
 
+## Python Tools Used
+
+- `math.log(x)` computes the natural logarithm. Docs: https://docs.python.org/3/library/math.html#math.log
+- `math.exp(x)` computes `e ** x`, used for perplexity. Docs: https://docs.python.org/3/library/math.html#math.exp
+- `list.append(value)` adds one loss value to a list. Docs: https://docs.python.org/3/tutorial/datastructures.html#more-on-lists
+
 ## Assignment
 
 Implement:

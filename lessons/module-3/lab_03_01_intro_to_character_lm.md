@@ -64,6 +64,12 @@ for current_char, next_char in zip(text, text[1:]):
 
 This is the core idea of the whole lab.
 
+## Python Tools Used
+
+- `text[1:]` slices a string from the second character to the end. Docs: https://docs.python.org/3/library/stdtypes.html#common-sequence-operations
+- `zip(text, text[1:])` pairs current and next characters. Docs: https://docs.python.org/3/library/functions.html#zip
+- A `for current_char, next_char in ...` loop unpacks each pair into two names. Docs: https://docs.python.org/3/tutorial/datastructures.html#tuples-and-sequences
+
 ## Assignment
 
 Use the starter code to print all neighboring character pairs from a short text.

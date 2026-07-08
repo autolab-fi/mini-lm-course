@@ -36,6 +36,12 @@ For a small beginner dataset, we can split by character count:
 
 This is simple and good enough for the first lab.
 
+## Python Tools Used
+
+- `int(value)` converts a number to an integer. Docs: https://docs.python.org/3/library/functions.html#int
+- `text[:index]`, `text[start:end]`, and `text[index:]` are string slices. Docs: https://docs.python.org/3/library/stdtypes.html#common-sequence-operations
+- Default function arguments such as `train_ratio=0.8` provide values when the caller does not pass them. Docs: https://docs.python.org/3/tutorial/controlflow.html#default-argument-values
+
 ## Assignment
 
 Implement:

@@ -22,6 +22,12 @@ Always use UTF-8 encoding in this course:
 text = path.read_text(encoding="utf-8")
 ```
 
+## Python Tools Used
+
+- `Path("raw_text.txt")` creates a path object for a file. Docs: https://docs.python.org/3/library/pathlib.html#pathlib.Path
+- `Path.write_text(...)` writes a string to a text file. Docs: https://docs.python.org/3/library/pathlib.html#pathlib.Path.write_text
+- `Path.read_text(...)` reads a text file into a string. Docs: https://docs.python.org/3/library/pathlib.html#pathlib.Path.read_text
+
 ## Theory
 
 ### Why Encoding Matters

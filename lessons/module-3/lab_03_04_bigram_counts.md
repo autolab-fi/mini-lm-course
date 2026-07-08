@@ -55,6 +55,12 @@ next_id = char_to_id[next_char]
 counts[current_id][next_id] += 1
 ```
 
+## Python Tools Used
+
+- A nested list such as `[[0 for _ in range(vocab_size)] for _ in range(vocab_size)]` creates a matrix. Docs: https://docs.python.org/3/tutorial/datastructures.html#nested-list-comprehensions
+- `range(vocab_size)` creates a sequence of indexes. Docs: https://docs.python.org/3/library/stdtypes.html#range
+- `counts[current_id][next_id] += 1` updates one cell in a list-of-lists matrix. Docs: https://docs.python.org/3/reference/simple_stmts.html#augmented-assignment-statements
+
 ## Assignment
 
 Implement:

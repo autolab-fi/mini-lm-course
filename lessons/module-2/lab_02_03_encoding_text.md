@@ -26,6 +26,12 @@ b -> 1
 encoded = [2, 0, 1]
 ```
 
+## Python Tools Used
+
+- `for char in text` loops through a string one character at a time. Docs: https://docs.python.org/3/tutorial/controlflow.html#for-statements
+- A list comprehension creates the encoded token list. Docs: https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions
+- `dict[key]` reads a value from a dictionary and raises an error if the key is missing. Docs: https://docs.python.org/3/tutorial/datastructures.html#dictionaries
+
 ## Assignment
 
 Implement:

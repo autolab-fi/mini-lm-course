@@ -54,6 +54,12 @@ probability = (count + 1) / (row_sum + vocab_size)
 
 This gives every possible next character a small non-zero probability.
 
+## Python Tools Used
+
+- `sum(row)` adds all counts in one row. Docs: https://docs.python.org/3/library/functions.html#sum
+- A list comprehension can convert a row of counts into probabilities. Docs: https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions
+- Floating point division `/` returns decimal values. Docs: https://docs.python.org/3/tutorial/introduction.html#numbers
+
 ## Assignment
 
 Implement:

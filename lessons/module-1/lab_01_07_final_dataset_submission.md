@@ -22,6 +22,12 @@ Create one Python file that:
 4. builds dataset statistics;
 5. writes the required artifacts.
 
+## Python Tools Used
+
+- `if __name__ == "__main__":` runs `main()` only when the file is executed directly. Docs: https://docs.python.org/3/library/__main__.html
+- `json.dumps(..., ensure_ascii=False, indent=2)` writes readable JSON while preserving non-ASCII text. Docs: https://docs.python.org/3/library/json.html#json.dumps
+- `Path(...).write_text(...)` creates the required artifact files. Docs: https://docs.python.org/3/library/pathlib.html#pathlib.Path.write_text
+
 ## Required Artifacts
 
 ```text

@@ -50,6 +50,12 @@ print(char_to_id["a"])
 
 The checker will compare `vocab`, `char_to_id`, and `counts`. If the order changes randomly, your output becomes harder to understand. Sorting the vocabulary keeps it stable.
 
+## Python Tools Used
+
+- `sorted(set(train_text))` creates a stable vocabulary from the training text. Docs: https://docs.python.org/3/library/functions.html#sorted
+- `enumerate(vocab)` gives `(index, character)` pairs. Docs: https://docs.python.org/3/library/functions.html#enumerate
+- `dict.get(" ", None)` can safely inspect whether a key exists. Docs: https://docs.python.org/3/library/stdtypes.html#dict.get
+
 ## Assignment
 
 Implement `build_vocab(text)`.

@@ -34,6 +34,13 @@ char_to_id = {char: index for index, char in enumerate(vocab)}
 id_to_char = {index: char for index, char in enumerate(vocab)}
 ```
 
+## Python Tools Used
+
+- `set(text)` removes duplicate characters. Docs: https://docs.python.org/3/library/functions.html#set
+- `sorted(...)` returns a stable sorted list. Docs: https://docs.python.org/3/library/functions.html#sorted
+- `enumerate(vocab)` gives both the index and the character. Docs: https://docs.python.org/3/library/functions.html#enumerate
+- A dictionary comprehension creates mappings in one expression. Docs: https://docs.python.org/3/tutorial/datastructures.html#dictionaries
+
 ## Assignment
 
 Implement:

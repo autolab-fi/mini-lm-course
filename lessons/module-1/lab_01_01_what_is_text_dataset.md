@@ -44,6 +44,12 @@ Even a simple text file has useful information:
 
 The unique characters are important because later we will build a character tokenizer and a character language model.
 
+## Python Tools Used
+
+- `len(text)` returns how many characters are in a string. Docs: https://docs.python.org/3/library/functions.html#len
+- `text.splitlines()` splits text into separate lines. Docs: https://docs.python.org/3/library/stdtypes.html#str.splitlines
+- `set(text)` keeps unique characters, and `sorted(...)` puts them in stable order. Docs: https://docs.python.org/3/library/functions.html#set and https://docs.python.org/3/library/functions.html#sorted
+
 ## Assignment
 
 Use the starter text and print:

@@ -40,6 +40,12 @@ Path("stats.json").write_text(json.dumps(stats, indent=2), encoding="utf-8")
 
 `dataset_card.md` is a short human-readable description of the dataset.
 
+## Python Tools Used
+
+- `json.dumps(data, indent=2)` converts Python data to formatted JSON text. Docs: https://docs.python.org/3/library/json.html#json.dumps
+- `Path.write_text(text, encoding="utf-8")` writes text files in UTF-8. Docs: https://docs.python.org/3/library/pathlib.html#pathlib.Path.write_text
+- A `for` loop repeats work for every item in a list. Docs: https://docs.python.org/3/tutorial/controlflow.html#for-statements
+
 ## Assignment
 
 Write all five artifacts and print their filenames.

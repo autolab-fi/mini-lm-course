@@ -24,6 +24,12 @@ For this beginner tokenizer, we will use a special token:
 
 If a character is unknown, encode it as the id of `<UNK>`.
 
+## Python Tools Used
+
+- `dict.get(key, default)` returns `default` when the key is missing. Docs: https://docs.python.org/3/library/stdtypes.html#dict.get
+- List concatenation such as `[UNK] + sorted(...)` builds a new list. Docs: https://docs.python.org/3/tutorial/introduction.html#lists
+- A constant-style name such as `UNK = "<UNK>"` gives a clear name to a special value. Docs: https://peps.python.org/pep-0008/#constants
+
 ## Assignment
 
 Add `<UNK>` to the vocabulary and update `encode` so unknown characters do not crash the program.

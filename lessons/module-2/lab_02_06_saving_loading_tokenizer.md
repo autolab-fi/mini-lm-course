@@ -39,6 +39,12 @@ JSON object keys are strings. When saving `id_to_char`, integer keys may become 
 
 `id_to_char` can be rebuilt from `vocab`.
 
+## Python Tools Used
+
+- `json.dumps(...)` converts Python dictionaries and lists to JSON text. Docs: https://docs.python.org/3/library/json.html#json.dumps
+- `json.loads(...)` parses JSON text back into Python data. Docs: https://docs.python.org/3/library/json.html#json.loads
+- `Path.read_text()` and `Path.write_text()` read and write files. Docs: https://docs.python.org/3/library/pathlib.html
+
 ## Assignment
 
 Implement:

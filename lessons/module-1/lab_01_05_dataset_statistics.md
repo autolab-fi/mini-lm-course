@@ -36,6 +36,12 @@ sorted(set(text))
 
 This includes spaces and newline characters.
 
+## Python Tools Used
+
+- A Python `dict` stores named values such as `{"num_chars": 42}`. Docs: https://docs.python.org/3/tutorial/datastructures.html#dictionaries
+- `sorted(set(text))` creates a stable list of unique characters. Docs: https://docs.python.org/3/library/functions.html#sorted
+- `len(...)` works on strings, lists, and many other containers. Docs: https://docs.python.org/3/library/functions.html#len
+
 ## Assignment
 
 Implement:

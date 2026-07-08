@@ -28,6 +28,13 @@ python3 train_bigram.py
 
 Your program must read the dataset, train the bigram model, evaluate it, generate samples, and save the required artifacts.
 
+## Python Tools Used
+
+- `Path(...).write_text(...)` saves each artifact file. Docs: https://docs.python.org/3/library/pathlib.html#pathlib.Path.write_text
+- `json.dumps(...)` serializes dictionaries, lists, numbers, and strings to JSON. Docs: https://docs.python.org/3/library/json.html#json.dumps
+- `math.isfinite(...)` is useful when checking that metrics are real numbers, not infinity or NaN. Docs: https://docs.python.org/3/library/math.html#math.isfinite
+- `if __name__ == "__main__": main()` keeps the script executable and organized. Docs: https://docs.python.org/3/library/__main__.html
+
 ## Required Artifacts
 
 Your script must create these files in the current working directory:

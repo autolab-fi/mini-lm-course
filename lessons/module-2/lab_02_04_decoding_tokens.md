@@ -24,6 +24,12 @@ Python can join a list of characters:
 text = "".join(["r", "o", "b", "o", "t"])
 ```
 
+## Python Tools Used
+
+- A generator expression like `id_to_char[token] for token in tokens` produces values one at a time. Docs: https://docs.python.org/3/tutorial/classes.html#generator-expressions
+- `"".join(...)` combines decoded characters into a string. Docs: https://docs.python.org/3/library/stdtypes.html#str.join
+- `decoded == text` checks whether the round trip recovered the original string. Docs: https://docs.python.org/3/library/stdtypes.html#comparisons
+
 ## Assignment
 
 Implement:
